@@ -45,17 +45,12 @@ class CGangTextField extends StatelessWidget {
       height: MediaQuery.of(context).size.height * height!,
       width: MediaQuery.of(context).size.width * width!,
       child: TextFormField(
-        obscureText: obscure!,
+        obscureText: obscure?? false,
         cursorColor: cursorColor,
         onChanged: onChanged,
         keyboardType: textInputType,
         controller: controller,
         decoration: InputDecoration(
-            prefixIcon: Icon(
-              prefixIcon,
-              size: 20,
-              color: prefixIconColor,
-            ),
             suffixIcon: IconButton(
                 onPressed: () {
                   suffixIconFunction!();
@@ -76,7 +71,7 @@ class CGangTextField extends StatelessWidget {
             enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(6),
                 borderSide: const BorderSide(
-                    color: Color(0xff696464),
+                    color: Color(0xffE1DBDB),
                     width: 1,
                     style: BorderStyle.solid)),
             errorBorder: OutlineInputBorder(

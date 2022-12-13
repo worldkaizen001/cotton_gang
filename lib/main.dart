@@ -1,4 +1,5 @@
 import 'package:cotton_gang/src/pages/onboarding/onboarding_page.dart';
+import 'package:cotton_gang/src/pages/register/register_page.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -17,7 +18,7 @@ class MyApp extends StatelessWidget {
 
         primarySwatch: Colors.blue,
       ),
-      home: const SplashScreen(),
+      home: const RegisterScreen(),
     );
   }
 }
