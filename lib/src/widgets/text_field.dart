@@ -42,7 +42,7 @@ class CGangTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: MediaQuery.of(context).size.height * height!,
+      height: MediaQuery.of(context).size.height * 0.085,
       width: MediaQuery.of(context).size.width * width!,
       child: TextFormField(
         obscureText: obscure?? false,
@@ -74,10 +74,16 @@ class CGangTextField extends StatelessWidget {
                     color: Color(0xffE1DBDB),
                     width: 1,
                     style: BorderStyle.solid)),
+
             errorBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(6),
                 borderSide: const BorderSide(
                     color: Colors.red, width: 1, style: BorderStyle.solid)),
+            focusedErrorBorder:OutlineInputBorder(
+                borderRadius: BorderRadius.circular(6),
+                borderSide: const BorderSide(
+                    color: Colors.red, width: 1, style: BorderStyle.solid)
+            ) ,
             hintText: hintText,
             hintStyle: hintTextStyle),
         validator: validator,
