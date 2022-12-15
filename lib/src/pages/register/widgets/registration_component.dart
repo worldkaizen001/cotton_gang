@@ -4,7 +4,7 @@ part of 'package:cotton_gang/src/pages/register/register_page.dart';
 class RegistrationComponent extends StatelessWidget {
   final String? Function(String?) validatorOne, validatorTwo;
 
-  final Function arrowBackCallback, buttonCallback;
+  final Function? arrowBackCallback, buttonCallback;
   final String title, subtitleOne, subtitleTwo;
   final TextEditingController controllerOne, controllerTwo;
   final Color? suffixIconColor, suffixIconColor2;
@@ -14,7 +14,7 @@ class RegistrationComponent extends StatelessWidget {
   final bool? obscure2;
 
   const RegistrationComponent(
-      {required this.buttonCallback,
+      { this.buttonCallback,
         this.suffixIcon,
         this.suffixIconColor2,
         this.suffixIconFunction2,
@@ -44,7 +44,7 @@ class RegistrationComponent extends StatelessWidget {
           width: 40,
           child: InkWell(
             onTap: () {
-              arrowBackCallback();
+              arrowBackCallback!();
             },
             child: Card(
               shape: RoundedRectangleBorder(
@@ -128,7 +128,7 @@ class RegistrationComponent extends StatelessWidget {
           buttonWidth: 1,
           buttonColor: const Color(0xff181818).withOpacity(0.49),
           callBack: () {
-            buttonCallback();
+            buttonCallback!();
           },
           textStyle: GoogleFonts.prompt(
               fontWeight: FontWeight.w400,

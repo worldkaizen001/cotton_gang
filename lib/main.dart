@@ -1,3 +1,4 @@
+import 'package:cotton_gang/src/pages/login/login_page.dart';
 import 'package:cotton_gang/src/pages/onboarding/onboarding_page.dart';
 import 'package:cotton_gang/src/pages/register/register_page.dart';
 import 'package:flutter/material.dart';
@@ -18,7 +19,7 @@ class MyApp extends StatelessWidget {
 
         primarySwatch: Colors.blue,
       ),
-      home: const PhoneNumberVerification (),
+      home: const RegisterScreen(),
     );
   }
 }
