@@ -26,21 +26,21 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
               ),
               SizedBox(
                 height: ScreenSize.height(context) * 0.48,
-                child: PageView(controller: controller, children: const [
+                child: PageView(controller: controller, children:  const [
                   OnboadringImagesAndTitle(
-                    images: CGangImages.boarding1,
+                    images: CGangImages.logo,
                     title: 'Affordable',
                     description:
                         'Purchase finese clothes that are within your budget.',
                   ),
                   OnboadringImagesAndTitle(
-                    images: CGangImages.boarding2,
+                    images:  CGangImages.logo,
                     title: 'Discover',
                     description:
                         'Discover dope clothes and vendors withi your location.',
                   ),
                   OnboadringImagesAndTitle(
-                    images: CGangImages.boarding2,
+                    images:  CGangImages.logo,
                     title: 'Earn',
                     description:
                         'Make more money by posting and sharing your products on cotton gang .',

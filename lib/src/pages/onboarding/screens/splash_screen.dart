@@ -30,8 +30,10 @@ class _SplashScreenState extends State<SplashScreen>
             child: Center(
       child: SlideTransition(
         position: offsetAnimation,
-        child: const FlutterLogo(
-          size: 150,
+        child:   Image.asset(
+            CGangImages.logo,
+          height: ScreenSize.height(context) * 0.32,
+          width: ScreenSize.width(context) * 0.45,
         ),
       ),
     )));

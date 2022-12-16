@@ -1,6 +1,7 @@
 import 'package:cotton_gang/src/pages/login/login_page.dart';
 import 'package:cotton_gang/src/pages/onboarding/onboarding_page.dart';
 import 'package:cotton_gang/src/pages/register/register_page.dart';
+import 'package:cotton_gang/src/pages/select_language/select_language_page.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -19,7 +20,7 @@ class MyApp extends StatelessWidget {
 
         primarySwatch: Colors.blue,
       ),
-      home: const RegisterScreen(),
+      home: const SelectLanguage(),
     );
   }
 }
