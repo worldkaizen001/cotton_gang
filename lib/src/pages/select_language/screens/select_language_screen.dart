@@ -1,6 +1,5 @@
 part of 'package:cotton_gang/src/pages/select_language/select_language_page.dart';
 
-
 class SelectLanguage extends StatefulWidget {
   const SelectLanguage({Key? key}) : super(key: key);
 
@@ -9,142 +8,128 @@ class SelectLanguage extends StatefulWidget {
 }
 
 class _SelectLanguageState extends State<SelectLanguage> {
-
-  List language  = [
-    {'lang': 'pidin', 'isTapped': false, "look":false},
-    {'lang': 'english', 'isTapped': true},
-
+  List language = [
+    {'lang': 'Nigerian pidin', 'isTapped': false, "look": false},
+    {'lang': 'Nigerian english', 'isTapped': false},
   ];
 
-List selected = [];
-
+  List isSelected = [];
 
   bool isChecked = false;
+
   @override
   Widget build(BuildContext context) {
-
-
-    List.generate(2, (index) => Row(
-      children: [
-        const Text('Delta'),
-        Checkbox(value: isChecked, onChanged: (val){
-          setState(() {
-            isChecked =! isChecked;
-          });
-        })
-      ],
-    ));
+    List.generate(
+        2,
+        (index) => Row(
+              children: [
+                const Text('Delta'),
+                Checkbox(
+                    value: isChecked,
+                    onChanged: (val) {
+                      setState(() {
+                        isChecked = !isChecked;
+                      });
+                    })
+              ],
+            ));
     return Scaffold(
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.only(left: 30,right: 30),
+          padding: const EdgeInsets.only(left: 30, right: 30),
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              // Image.asset(
-              //   CGangImages.logo,
-              //   height: ScreenSize.height(context) * 0.27,
-              //   width: ScreenSize.width(context) * 0.27,
-              // ),
-              // CustomSizedBox.verticalSpace(50),
-
-             // Column(
-             //   children: languages.map((index) {
-             //     return GestureDetector(
-             //       // onTap: (){
-             //       //   setState(() {
-             //       //     index.isTapped = isChecked;
-             //       //   });
-             //       // },
-             //       child: Row(
-             //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-             //         children: [
-             //           Text(index.tribe),
-             //           Checkbox(value: index.isTapped, onChanged: (val){
-             //             setState(() {
-             //
-             //               isChecked =! isChecked;
-             //             });
-             //           })
-             //         ],
-             //       ),
-             //     );
-             //   }).toList(),
-             // ),
-              Column(
-               children: language.map((obj) {
-                 bool isValue = obj["isTapped"];
-                 String text = obj["lang"];
-                 return Row(children:  [Text(text), Checkbox(value: isValue, onChanged: (_){
-                   setState(() {
-                     obj["isTapped"]= !obj["isTapped"];
-                     // isValue =! isValue;
-
-                     isChecked = obj["isTapped"];
-
-                     selected.contains(obj)?
-                     selected.remove(obj): selected.add(obj);
-                   });
-                 })],);
-               }).toList(),
+              Image.asset(
+                CGangImages.logo,
+                height: ScreenSize.height(context) * 0.27,
+                width: ScreenSize.width(context) * 0.27,
               ),
+
+
+
               Padding(
-                padding: const EdgeInsets.only(left: 15,top: 15,right: 30),
+                padding: const EdgeInsets.only(left: 15, top: 15, right: 20),
                 child: SizedBox(
-                  height: 250,
+                  height: 180,
                   width: 300,
                   child: Card(
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(15)),
                     color: const Color(0xfff9f9f9),
-                    child: Column(
-                      children: [
-                        Text(
-                          'Select preferred language',
-                          style: GoogleFonts.prompt(
-                            textStyle: const TextStyle(
-                              color: Color(0xff181818),
-                              fontSize: 17,
-                              fontWeight: FontWeight.w600,
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 15,right: 15,top: 15),
+                      child: Column(
+                        children: [
+                          Text(
+                            'Select preferred language',
+                            style: GoogleFonts.prompt(
+                              textStyle: const TextStyle(
+                                color: Color(0xff181818),
+                                fontSize: 17,
+                                fontWeight: FontWeight.w600,
+                              ),
                             ),
                           ),
-                        ),
-                        // SizedBox(
-                        //   height: 150,
-                        //   child: ListView.builder(
-                        //     itemCount: language.length,
-                        //       itemBuilder: (ctx,index){
-                        //       final data = language[index];
-                        //       return Row(
-                        //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        //         children: [
-                        //            Text(data),
-                        //           Checkbox(value: isChecked, onChanged: (val){
-                        //             setState(() {
-                        //               isChecked =! isChecked;
-                        //             });
-                        //           })
-                        //         ],
-                        //       );
-                        //       }),
-                        // ),
+                          Column(
+                            children: language.map((obj) {
+                              bool isValue = obj["isTapped"];
+                              String text = obj["lang"];
+                              return Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(text,style:  GoogleFonts.prompt(
+                                    fontWeight: FontWeight.w400,
+                                    fontSize: 15,
+                                    color: const Color(0xff181818),
+                                  ),),
+                                  Checkbox(
+                                      value: isValue,
+                                      shape: const CircleBorder(),
+                                      onChanged: (_) {
+                                        setState(() {
+                                          obj["isTapped"] =! obj["isTapped"];
+                                          // isValue =! isValue;
 
+                                          isChecked = obj["isTapped"];
 
-                      ],
+                                          isSelected.contains(obj)
+                                              ? isSelected.remove(obj)
+                                              : isSelected.add(obj);
+                                        });
+                                      }),
+                                  // Radio(value: isValue, groupValue: 'groupValue', onChanged: (val){
+                                  //   setState(() {
+                                  //     obj["isTapped"] =! obj["isTapped"];
+                                  //   });
+                                  // })
+                                ],
+                              );
+                            }).toList(),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),
               ),
-              // ElevatedButton(
-              //     style: ElevatedButton.styleFrom(
-              //       backgroundColor: isChecked ? Colors.red : Colors.teal,
-              //     ),
-              //     onPressed: (){}, child: Text('gance')),
+              CustomSizedBox.verticalSpace(40),
 
-              ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: selected.isNotEmpty ? Colors.black : Colors.teal,
-                  ),
-                  onPressed: (){}, child: Text('gance')),
-
+              CGangButton(
+                title: 'Select',
+                buttonHeight: 0.060,
+                buttonWidth: 1,
+                buttonColor: isSelected.isEmpty
+                    ? const Color(0xff181818).withOpacity(0.49)
+                    : const Color(0xff181818),
+                callBack: isSelected.isEmpty ? () {} : () {},
+                textStyle: GoogleFonts.prompt(
+                    fontWeight: FontWeight.w400,
+                    fontSize: 15,
+                    color: const Color(0xffF9F9F9)),
+                borderRadius: 4,
+                borderColor: const Color(0xff181818),
+              ),
 
 
             ],
@@ -196,4 +181,3 @@ List selected = [];
 // ),
 // )).toList(),
 // ),
-
