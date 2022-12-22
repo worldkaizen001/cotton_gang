@@ -19,20 +19,6 @@ class _SelectLanguageState extends State<SelectLanguage> {
 
   @override
   Widget build(BuildContext context) {
-    List.generate(
-        2,
-        (index) => Row(
-              children: [
-                const Text('Delta'),
-                Checkbox(
-                    value: isChecked,
-                    onChanged: (val) {
-                      setState(() {
-                        isChecked = !isChecked;
-                      });
-                    })
-              ],
-            ));
     return Scaffold(
       body: SafeArea(
         child: Padding(
