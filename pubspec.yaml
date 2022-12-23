@@ -39,6 +39,9 @@ dependencies:
   google_fonts: ^3.0.1
   smooth_page_indicator: ^1.0.0+2
   sms_autofill: ^2.2.0
+  flutter_hooks: ^0.18.5+1
+  iconsax: ^0.0.8
+
 
 
 

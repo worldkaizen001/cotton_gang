@@ -241,7 +241,16 @@ class _SelectPreferenceScreenState extends State<SelectPreferenceScreen> {
               //     ],
               //   ),
               // ),
-
+              // SizedBox(
+              //   height: 200,
+              //   child: ListView.builder(
+              //     itemCount: preferences.length,
+              //       itemBuilder: (context, index){
+              //       var height = preferences[index]["height"];
+              //       var title = preferences[index]["title"];
+              //       return Text(height.toString());
+              //       }),
+              // ),
               Wrap(
                 spacing: 20,
                 runSpacing: 25,
@@ -249,7 +258,7 @@ class _SelectPreferenceScreenState extends State<SelectPreferenceScreen> {
                 children: preferences.map((obj,){
                   var title = obj["title"];
 
-                  var select = obj["onTapped"];
+                  var  select = obj["onTapped"];
                   double height = obj["height"];
                   double width = obj["width"];
                   double gHeight = obj["glassHeight"];

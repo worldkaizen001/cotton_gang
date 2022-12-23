@@ -6,6 +6,8 @@ class CGangImages {
   static const numberVerification = 'images/bro.png';
   static const female  = 'images/female.png';
   static const unisex  = 'images/unisex.png';
+  static const product1  = 'images/product1.png';
+
 
 
 
