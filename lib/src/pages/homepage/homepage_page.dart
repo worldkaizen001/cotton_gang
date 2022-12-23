@@ -8,4 +8,6 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iconsax/iconsax.dart';
 
+import '../../models/product.dart';
+
 part 'screens/homepage.dart';
