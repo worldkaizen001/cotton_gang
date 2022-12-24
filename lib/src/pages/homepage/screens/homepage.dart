@@ -14,9 +14,9 @@ class _HomepageScreenState extends State<HomepageScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: customAppBar(),
       backgroundColor: const Color(0xffF9F9F9),
       body: SafeArea(
-
         child: SingleChildScrollView(
           child: Column(
             children: [
@@ -27,21 +27,18 @@ class _HomepageScreenState extends State<HomepageScreen> {
               Column(
                 children: products.map((obj) {
                   return ProductCard(
-                    iconTapped: (){
+                    iconTapped: () {
                       setState(() {
-                        obj.isLiked =! obj.isLiked;
-                         toggle =! toggle;
-                        
-                       toggle? favorites.add(obj): favorites.remove(obj);
+                        obj.isLiked = !obj.isLiked;
+                        toggle = !toggle;
+
+                        toggle ? favorites.add(obj) : favorites.remove(obj);
                       });
                     },
                     isLiked: obj.isLiked,
-
-
                     price: obj.price,
                     productImage: obj.productImage,
                     vendorName: obj.vendorName,
-
                     productDescription: obj.productDescription,
                     productName: obj.productName,
                   );
@@ -50,7 +47,8 @@ class _HomepageScreenState extends State<HomepageScreen> {
               Column(
                 children: [
                   Padding(
-                    padding: const EdgeInsets.only(left: 16, right: 16, top: 30),
+                    padding:
+                        const EdgeInsets.only(left: 16, right: 16, top: 30),
                     child: Stack(
                       children: [
                         Container(
@@ -191,7 +189,7 @@ class _HomepageScreenState extends State<HomepageScreen> {
                   )
                 ],
               ),
-             const  Divider(
+              const Divider(
                 color: Colors.black,
                 height: 2,
               ),
@@ -204,9 +202,10 @@ class _HomepageScreenState extends State<HomepageScreen> {
                     width: double.infinity,
                     child: Column(
                       children: [
-                        Text(obj.price.toString(),style: TextStyle(
-                          color: Colors.white
-                        ),),
+                        Text(
+                          obj.price.toString(),
+                          style: const TextStyle(color: Colors.white),
+                        ),
                         CircleAvatar(
                           backgroundImage: AssetImage(obj.productImage),
                           radius: 30,
@@ -232,9 +231,9 @@ class ProductCard extends StatefulWidget {
 
   const ProductCard(
       {required this.productDescription,
-        required this.isLiked,
+      required this.isLiked,
       required this.productName,
-        required this.iconTapped,
+      required this.iconTapped,
       required this.productImage,
       required this.price,
       required this.vendorName,
@@ -342,7 +341,9 @@ class _ProductCardState extends State<ProductCard> {
                     onPressed: () {
                       widget.iconTapped();
                     },
-                    icon: widget.isLiked?  Icon(Iconsax.menu):  Icon(Iconsax.heart) ,
+                    icon: widget.isLiked
+                        ? Icon(Iconsax.menu)
+                        : Icon(Iconsax.heart),
                     color: const Color(0xff39FF14),
                   )),
               Positioned(

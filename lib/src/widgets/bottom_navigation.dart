@@ -3,8 +3,11 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iconsax/iconsax.dart';
 
-import '../pages/homepage/homepage_page.dart';
-import '../pages/select_preference/select_preference.dart';
+import 'package:cotton_gang/src/pages/homepage/homepage_page.dart';
+import 'package:cotton_gang/src/pages/profile/profile_page.dart';
+import 'package:cotton_gang/src/pages/saved_screen/saved_screen_page.dart';
+
+import 'package:cotton_gang/src/pages/search/search_page.dart';
 
 class BottomNavigation extends HookWidget {
   const BottomNavigation({Key? key}) : super(key: key);
@@ -14,17 +17,19 @@ class BottomNavigation extends HookWidget {
     final currentIndex = useState(0);
 
     final children = [
-      HomepageScreen(),
-      SelectPreferenceScreen(),
-      SelectPreferenceScreen(),
-      SelectPreferenceScreen(),
+      const HomepageScreen(),
+      const SearchScreen(),
+      const SavedScreen(),
+      const ProfileScreen(),
     ];
     return Scaffold(
       body: children[currentIndex.value],
       bottomNavigationBar: SizedBox(
         height: 60,
         child: ClipRRect(
-          borderRadius: const BorderRadius.only(bottomLeft: Radius.circular(20), bottomRight: Radius.circular(20) ),
+          borderRadius: const BorderRadius.only(
+              bottomLeft: Radius.circular(20),
+              bottomRight: Radius.circular(20)),
           child: BottomNavigationBar(
             backgroundColor: const Color(0xff181818),
             type: BottomNavigationBarType.fixed,
