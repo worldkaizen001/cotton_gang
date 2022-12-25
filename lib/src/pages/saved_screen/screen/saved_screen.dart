@@ -9,8 +9,8 @@ class SavedScreen extends StatelessWidget {
       appBar: customAppBar(),
       endDrawer: const CustomEndDrawer(),
       body: Column(
-        children: [
-          const Titles(
+        children: const [
+          Titles(
             title: 'Saved',
           ),
         ],
