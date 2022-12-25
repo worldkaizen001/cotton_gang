@@ -9,5 +9,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:iconsax/iconsax.dart';
 
 import '../../models/product.dart';
+import '../profile/profile_page.dart';
 
 part 'screens/homepage.dart';

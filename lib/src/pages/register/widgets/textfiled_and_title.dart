@@ -3,7 +3,7 @@ part of 'package:cotton_gang/src/pages/register/register_page.dart';
 
 class TextFieldAndTitle extends StatelessWidget {
   final String title;
-  final TextEditingController? controller;
+  final TextEditingController controller;
   final String? Function(String?)? validator;
   final String? Function(String?)? onChanged;
   final Color? color, suffixIconColor;
@@ -19,7 +19,7 @@ class TextFieldAndTitle extends StatelessWidget {
         this.obscure,
         required this.title,
         Key? key,
-        this.controller,
+        required this.controller,
         this.validator,
         this.onChanged,
         this.suffixIcon,

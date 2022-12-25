@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class CGangTextField extends StatelessWidget {
   final String? hintText;
   final BoxConstraints? constraints;
-  final TextEditingController? controller;
+  final TextEditingController controller;
   final String? Function(String?)? validator;
   final String? Function(String?)? onChanged;
   final TextInputType? textInputType;
@@ -33,7 +34,7 @@ class CGangTextField extends StatelessWidget {
       this.validator,
       this.hintText,
       this.constraints,
-      this.controller,
+      required this.controller,
       Key? key,
       this.prefixIconColor,
       this.suffixIconColor})
@@ -45,7 +46,12 @@ class CGangTextField extends StatelessWidget {
       height: MediaQuery.of(context).size.height * 0.085,
       width: MediaQuery.of(context).size.width * width!,
       child: TextFormField(
-        obscureText: obscure?? false,
+        style: GoogleFonts.prompt(
+          fontSize: 15,
+          fontWeight: FontWeight.w400,
+          color: const Color(0xff181818),
+        ),
+        obscureText: obscure ?? false,
         cursorColor: cursorColor,
         onChanged: onChanged,
         keyboardType: textInputType,
@@ -58,6 +64,15 @@ class CGangTextField extends StatelessWidget {
                 icon: Icon(
                   suffixIcon,
                   color: suffixIconColor,
+                  size: 21,
+                )),
+            prefixIcon: IconButton(
+                onPressed: () {
+                  prefixIconFunction!();
+                },
+                icon: Icon(
+                  prefixIcon,
+                  color: prefixIconColor,
                   size: 21,
                 )),
             filled: true,
@@ -74,16 +89,14 @@ class CGangTextField extends StatelessWidget {
                     color: Color(0xffE1DBDB),
                     width: 1,
                     style: BorderStyle.solid)),
-
             errorBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(6),
                 borderSide: const BorderSide(
                     color: Colors.red, width: 1, style: BorderStyle.solid)),
-            focusedErrorBorder:OutlineInputBorder(
+            focusedErrorBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(6),
                 borderSide: const BorderSide(
-                    color: Colors.red, width: 1, style: BorderStyle.solid)
-            ) ,
+                    color: Colors.red, width: 1, style: BorderStyle.solid)),
             hintText: hintText,
             hintStyle: hintTextStyle),
         validator: validator,

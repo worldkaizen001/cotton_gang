@@ -7,8 +7,12 @@ class SavedScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: customAppBar(),
+      endDrawer: const CustomEndDrawer(),
       body: Column(
         children: [
+          const Titles(
+            title: 'Saved',
+          ),
         ],
       ),
     );

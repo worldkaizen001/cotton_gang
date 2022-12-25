@@ -7,6 +7,9 @@ class CGangImages {
   static const female  = 'images/female.png';
   static const unisex  = 'images/unisex.png';
   static const product1  = 'images/product1.png';
+  static const savedEmptyState = 'images/saved.png';
+  static const searchEmptyState = 'images/search.png';
+
 
 
 

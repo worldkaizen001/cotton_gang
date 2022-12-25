@@ -1,35 +1,51 @@
 part of 'package:cotton_gang/src/pages/search/search_page.dart';
 
-class SearchScreen extends StatelessWidget {
+class SearchScreen extends StatefulWidget {
   const SearchScreen({Key? key}) : super(key: key);
 
   @override
+  State<SearchScreen> createState() => _SearchScreenState();
+}
+
+class _SearchScreenState extends State<SearchScreen> {
+  final searchController = TextEditingController();
+
+  @override
   Widget build(BuildContext context) {
-    final searchController = TextEditingController();
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: customAppBar(),
+      endDrawer: const CustomEndDrawer(),
       body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          CGangTextField(
+          const Titles(
+            title: 'Search',
+          ),
+          Padding(
+            padding: const  EdgeInsets.only(left: 20, right: 20, top: 20),
+            child: CGangTextField(
+              controller: searchController,
+              validator: (val) {
+                return null;
+              },
+              onChanged: (val) {
+                setState(() {
 
-            controller: searchController,
-            validator: (val){
-              return null;
-            },
-            onChanged: (val){
-              return null;
-            },
-            width: 1,
-            obscure: false,
-            prefixWidget: const Icon(
-              Iconsax.search_normal,
-            ),
-            hintText: 'Search product or seller',
-
-            hintTextStyle: GoogleFonts.prompt(
-              fontSize: 12,
-              fontWeight: FontWeight.w300,
-              color: const Color(0xff697367),
+                });
+                return null;
+              },
+              width: 1,
+              obscure: false,
+              cursorColor: const  Color(0xff181818),
+                prefixIcon: searchController.text.isEmpty? Iconsax.search_normal: null,
+              prefixIconColor: const Color(0xff181818),
+              hintText: 'Search product or seller',
+              hintTextStyle: GoogleFonts.prompt(
+                fontSize: 14,
+                fontWeight: FontWeight.w300,
+                color: const Color(0xff697367),
+              ),
             ),
           )
         ],
