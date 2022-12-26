@@ -1,23 +1,22 @@
-part of 'package:cotton_gang/src/pages/register/register_page.dart';
+part of 'package:cotton_gang/src/pages/forget_password/forget_password_page.dart';
 
-class CreatePassword extends StatefulWidget {
-  const CreatePassword({Key? key}) : super(key: key);
+
+class CreateNewPassword extends StatefulWidget {
+  const CreateNewPassword({Key? key}) : super(key: key);
 
   @override
-  State<CreatePassword> createState() => _CreatePasswordState();
+  State<CreateNewPassword> createState() => _CreateNewPasswordState();
 }
 
-class _CreatePasswordState extends State<CreatePassword> {
+class _CreateNewPasswordState extends State<CreateNewPassword> {
   final formGlobalKey = GlobalKey<FormState>();
   final passwordController = TextEditingController();
   final confirmPasswordController = TextEditingController();
-
   bool obscure = false;
-  bool diff = false;
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return  Scaffold(
       body: Padding(
         padding: const EdgeInsets.only(left: 25, right: 25, top: 50),
         child: Form(
@@ -30,7 +29,7 @@ class _CreatePasswordState extends State<CreatePassword> {
                 width: 40,
                 height: 40,
                 arrowBackCallback: () {},
-                title: 'Sign-Up',
+                title: 'Create New Password',
               ),
               TextFieldAndTitle(
 
@@ -42,7 +41,7 @@ class _CreatePasswordState extends State<CreatePassword> {
                     obscure =! obscure;
                   });
                 },
-                title: 'Create password',
+                title: 'New password',
                 validator: (val) {
                   if (val!.isEmpty) {
                     return 'Please enter password';

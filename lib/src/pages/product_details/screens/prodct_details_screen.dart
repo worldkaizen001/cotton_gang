@@ -16,18 +16,15 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
   dynamic currentState;
   dynamic current;
 
+
   final controller = PageController();
-  List <dynamic> btnList = [
+  List <Map<String, dynamic>> btnList = [
     {"title":"Description", "isClicked":false},
     {"title":"More Details", "isClicked":false},
     {"title":"reviews", "isClicked":false}
   ];
 
-  List<dynamic> mainBtnList = [
-    'Description','More Details','Reviews'
-  ];
 
-  // List<dynamic> mainImages = [CGangImages.female,CGangImages.logo,CGangImages.lvBag];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -258,8 +255,9 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                  height: 30,
                  child:  ListView.builder(
                    scrollDirection: Axis.horizontal,
-                     itemCount: mainBtnList.length,
+                     itemCount:  btnList.length,
                      itemBuilder: (context, index){
+
                        return GestureDetector(
                          onTap:
                              (){
@@ -281,7 +279,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
 
                              ),
                            child: Center(
-                             child: Text(mainBtnList[index],
+                             child: Text( btnList[index]["title"],
                            )),
                            ),
 
@@ -294,7 +292,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                   const MoreDetails(
                   ),
                 if(currentState == 2)
-                  ReviewComments(),
+                  const ReviewComments(),
 
 
 

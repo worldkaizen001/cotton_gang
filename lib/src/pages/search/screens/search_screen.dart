@@ -10,6 +10,7 @@ class SearchScreen extends StatefulWidget {
 class _SearchScreenState extends State<SearchScreen> {
   final searchController = TextEditingController();
 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -48,7 +49,11 @@ class _SearchScreenState extends State<SearchScreen> {
                 color: const Color(0xff697367),
               ),
             ),
-          )
+          ),
+          const GenericEmptyState(emptyStateImage:CGangImages.searchEmptyState, firstText: 'oops', secondText: 'Your saved list is empty!',),
+
+
+
         ],
       ),
     );

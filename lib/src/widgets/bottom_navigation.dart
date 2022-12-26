@@ -9,7 +9,9 @@ import 'package:cotton_gang/src/pages/saved_screen/saved_screen_page.dart';
 
 import 'package:cotton_gang/src/pages/search/search_page.dart';
 
+import '../pages/forget_password/forget_password_page.dart';
 import '../pages/product_details/product_details_page.dart';
+import '../pages/register/register_page.dart';
 
 class BottomNavigation extends HookWidget {
   const BottomNavigation({Key? key}) : super(key: key);
@@ -22,7 +24,8 @@ class BottomNavigation extends HookWidget {
       const HomepageScreen(),
       const SearchScreen(),
       const SavedScreen(),
-      const SavedScreen(),
+      CreateNewPassword(),
+
 
       // const ProfileScreen(),
     ];

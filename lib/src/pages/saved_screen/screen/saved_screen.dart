@@ -9,10 +9,12 @@ class SavedScreen extends StatelessWidget {
       appBar: customAppBar(),
       endDrawer: const CustomEndDrawer(),
       body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: const [
           Titles(
             title: 'Saved',
           ),
+          GenericEmptyState(emptyStateImage:CGangImages.savedEmptyState, firstText: 'oops', secondText: 'Your saved list is empty!',),
         ],
       ),
     );

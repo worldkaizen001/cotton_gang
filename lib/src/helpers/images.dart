@@ -10,6 +10,8 @@ class CGangImages {
   static const savedEmptyState = 'images/saved.png';
   static const searchEmptyState = 'images/search.png';
   static const lvBag = 'images/lvv.png';
+  static const envelop = 'images/envelop.png';
+
 
 
 
