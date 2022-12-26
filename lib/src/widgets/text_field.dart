@@ -66,15 +66,7 @@ class CGangTextField extends StatelessWidget {
                   color: suffixIconColor,
                   size: 21,
                 )),
-            prefixIcon: IconButton(
-                onPressed: () {
-                  prefixIconFunction!();
-                },
-                icon: Icon(
-                  prefixIcon,
-                  color: prefixIconColor,
-                  size: 21,
-                )),
+            prefixIcon: prefixWidget,
             filled: true,
             fillColor: const Color(0xffffffff),
             focusedBorder: OutlineInputBorder(

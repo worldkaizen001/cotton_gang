@@ -15,35 +15,51 @@ class _HomepageScreenState extends State<HomepageScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: customAppBar(),
-      endDrawer:const CustomEndDrawer(),
+      endDrawer: const CustomEndDrawer(),
       backgroundColor: const Color(0xffF9F9F9),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-             const Titles(title: 'Home',),
+              const Titles(
+                title: 'Home',
+              ),
               Column(
                 children: products.map((obj) {
-                  return ProductCard(
-                    iconTapped: () {
-                      setState(() {
-                        obj.isLiked = !obj.isLiked;
-                        toggle = !toggle;
-
-                        toggle ? favorites.add(obj) : favorites.remove(obj);
-                      });
+                  return GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => ProductDetailsScreen(
+                                newImages:obj.productImages,
+                                productImage: obj.productImages[0],
+                                ownerName: obj.vendorName,
+                                    productDescription: obj.productDescription,
+                                    price: obj.price,
+                                    productName: obj.productName,
+                                  )));
                     },
-                    isLiked: obj.isLiked,
-                    price: obj.price,
-                    productImage: obj.productImage,
-                    vendorName: obj.vendorName,
-                    productDescription: obj.productDescription,
-                    productName: obj.productName,
+                    child: ProductCard(
+                      iconTapped: () {
+                        setState(() {
+                          obj.isLiked = !obj.isLiked;
+                          toggle = !toggle;
+
+                          toggle ? favorites.add(obj) : favorites.remove(obj);
+                        });
+                      },
+                      isLiked: obj.isLiked,
+                      price: obj.price,
+                      productImage: obj.productImages[0],
+                      vendorName: obj.vendorName,
+                      productDescription: obj.productDescription,
+                      productName: obj.productName,
+                    ),
                   );
                 }).toList(),
               ),
-
             ],
           ),
         ),
@@ -72,8 +88,6 @@ class ProductCard extends StatefulWidget {
   @override
   State<ProductCard> createState() => _ProductCardState();
 }
-
-
 
 class _ProductCardState extends State<ProductCard> {
   @override
@@ -173,8 +187,8 @@ class _ProductCardState extends State<ProductCard> {
                       widget.iconTapped();
                     },
                     icon: widget.isLiked
-                        ? Icon(Iconsax.menu)
-                        : Icon(Iconsax.heart),
+                        ? const Icon(Iconsax.menu)
+                        : const Icon(Iconsax.heart),
                     color: const Color(0xff39FF14),
                   )),
               Positioned(
@@ -227,23 +241,27 @@ class _ProductCardState extends State<ProductCard> {
     );
   }
 }
+
 class Titles extends StatelessWidget {
   final String title;
-  const Titles({required this.title,Key? key}) : super(key: key);
+
+  const Titles({required this.title, Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return  Padding(
+    return Padding(
       padding: const EdgeInsets.only(left: 20, top: 20),
-      child: Text(title,style:  GoogleFonts.prompt(
-        fontSize: 25,
-        fontWeight: FontWeight.w600,
-        color: const Color(0xff555555),
-      ),),
+      child: Text(
+        title,
+        style: GoogleFonts.prompt(
+          fontSize: 25,
+          fontWeight: FontWeight.w600,
+          color: const Color(0xff555555),
+        ),
+      ),
     );
   }
 }
-
 
 class TitleAndDescription extends StatelessWidget {
   final String productTitle, productDescription;
@@ -333,34 +351,33 @@ class ImageAndTitle extends StatelessWidget {
 
 List<Product> products = [
   Product(
+      productImages: [CGangImages.savedEmptyState, CGangImages.unisex,CGangImages.searchEmptyState],
       productDescription: 'bad ass',
       id: 1,
       productName: 'balance',
       price: 250,
-      productImage: CGangImages.female,
       vendorName: 'rume volt',
       isLiked: false),
   Product(
+      productImages: [CGangImages.logo, CGangImages.boarding1,CGangImages.female],
       productDescription: 'clean shirt',
       id: 2,
       productName: 'puma',
       price: 300,
-      productImage: CGangImages.product1,
       vendorName: 'lelly bobs',
       isLiked: false),
   Product(
+    productImages: [CGangImages.lvBag, CGangImages.unisex,CGangImages.female],
       productDescription: 'bad ass',
       id: 1,
       productName: 'balance',
       price: 250,
-      productImage: CGangImages.female,
       vendorName: 'rume volt',
       isLiked: false),
 ];
 
 AppBar customAppBar() {
   return AppBar(
-    
     elevation: 0.3,
     automaticallyImplyLeading: false,
     backgroundColor: const Color(0xffF9F9F9),
@@ -374,11 +391,18 @@ AppBar customAppBar() {
     ),
     actions: [
       Builder(
-        builder: (context) => Padding(padding: const EdgeInsets.only(right: 6),child: IconButton(
-          icon: const Icon(Iconsax.menu,size: 25,color: Colors.black,),
-          onPressed: () => Scaffold.of(context).openEndDrawer(),
-          tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
-        ),),
+        builder: (context) => Padding(
+          padding: const EdgeInsets.only(right: 6),
+          child: IconButton(
+            icon: const Icon(
+              Iconsax.menu,
+              size: 25,
+              color: Colors.black,
+            ),
+            onPressed: () => Scaffold.of(context).openEndDrawer(),
+            tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
+          ),
+        ),
       ),
     ],
   );

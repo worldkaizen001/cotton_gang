@@ -25,6 +25,7 @@ class _SearchScreenState extends State<SearchScreen> {
           Padding(
             padding: const  EdgeInsets.only(left: 20, right: 20, top: 20),
             child: CGangTextField(
+              prefixWidget: Icon(searchController.text.isEmpty? Iconsax.search_normal: null, color: const Color(0xff181818)),
               controller: searchController,
               validator: (val) {
                 return null;

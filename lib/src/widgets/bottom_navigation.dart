@@ -22,7 +22,8 @@ class BottomNavigation extends HookWidget {
       const HomepageScreen(),
       const SearchScreen(),
       const SavedScreen(),
-      ProductDetailsScreen(),
+      const SavedScreen(),
+
       // const ProfileScreen(),
     ];
     return Scaffold(

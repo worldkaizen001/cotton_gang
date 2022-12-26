@@ -32,10 +32,10 @@ class CGangButton extends StatelessWidget {
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(borderRadius!),
+              borderRadius: BorderRadius.circular(borderRadius??0),
             ),
             elevation: 0,
-            side: BorderSide(color: borderColor!, width: 1),
+            side: BorderSide(color: borderColor?? Colors.transparent, width: 1),
             backgroundColor: buttonColor),
         onPressed: () {
           callBack();

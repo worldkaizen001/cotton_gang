@@ -1,18 +1,20 @@
 import 'package:cotton_gang/src/helpers/images.dart';
 
 class Product {
-  final String productImage, vendorName, productName, productDescription;
+  final String vendorName, productName, productDescription;
   final double price;
   final int id;
    bool isLiked;
+   List<String> productImages;
 
   Product(
-      {required this.productDescription,
+      {
+        required this.productImages,
+        required this.productDescription,
        required this.id,
         required this.isLiked,
       required this.productName,
       required this.price,
-      required this.productImage,
       required this.vendorName});
 }
 
