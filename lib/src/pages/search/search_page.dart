@@ -8,6 +8,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:iconsax/iconsax.dart';
 
 import '../../helpers/images.dart';
+import '../../widgets/custom_appbar.dart';
+import '../../widgets/drawer_component.dart';
 import '../../widgets/empty_state.dart';
 import '../profile/profile_page.dart';
 

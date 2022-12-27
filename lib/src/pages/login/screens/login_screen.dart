@@ -13,7 +13,6 @@ class _LoginScreenState extends State<LoginScreen> {
   final emailController = TextEditingController();
   final phoneController = TextEditingController();
 
-
   bool obscure = false;
 
   @override
@@ -47,16 +46,13 @@ class _LoginScreenState extends State<LoginScreen> {
               },
               obscure: false,
               onChanged: (val) {
-                setState(() {
-
-                });
+                setState(() {});
                 return null;
               },
             ),
             CustomSizedBox.verticalSpace(5),
             TextFieldAndTitle(
               controller: emailController,
-
               title: 'Email Address',
               validator: (val) {
                 if (val!.isEmpty) {
@@ -70,21 +66,19 @@ class _LoginScreenState extends State<LoginScreen> {
               },
               obscure: false,
               onChanged: (val) {
-                setState(() {
-
-                });
+                setState(() {});
                 return null;
               },
             ),
             CustomSizedBox.verticalSpace(5),
             TextFieldAndTitle(
               controller: passwordController,
-
-              suffixIconColor:  const Color(0xff8B8B8B),
-              suffixIcon: obscure ? Icons.visibility_outlined : Icons.visibility_off,
-              suffixIconFunction: (){
+              suffixIconColor: const Color(0xff8B8B8B),
+              suffixIcon:
+                  obscure ? Icons.visibility_outlined : Icons.visibility_off,
+              suffixIconFunction: () {
                 setState(() {
-                  obscure =! obscure;
+                  obscure = !obscure;
                 });
               },
               title: 'Password',
@@ -99,9 +93,7 @@ class _LoginScreenState extends State<LoginScreen> {
               },
               obscure: obscure,
               onChanged: (val) {
-                setState(() {
-
-                });
+                setState(() {});
                 return null;
               },
             ),
@@ -126,13 +118,20 @@ class _LoginScreenState extends State<LoginScreen> {
               alternativeCallback: () {},
               alternativeTitle: 'SIGN-UP INSTEAD',
               facebookButtonCallback: () {},
-              firstButtonCallback: passwordController.text.isEmpty|| phoneController.text.isEmpty || emailController.text.isEmpty? (){
-              }: () {
-                if (formGlobalKey.currentState!.validate()) {}
-              },
+              firstButtonCallback: passwordController.text.isEmpty ||
+                      phoneController.text.isEmpty ||
+                      emailController.text.isEmpty
+                  ? () {}
+                  : () {
+                      if (formGlobalKey.currentState!.validate()) {}
+                    },
               googleButtonCallback: () {},
               firstButtonTitle: 'Continue',
-              firstButtonColor: passwordController.text.isEmpty|| phoneController.text.isEmpty || emailController.text.isEmpty ?  const Color(0xff181818).withOpacity(0.49): const Color(0xff181818),
+              firstButtonColor: passwordController.text.isEmpty ||
+                      phoneController.text.isEmpty ||
+                      emailController.text.isEmpty
+                  ? const Color(0xff181818).withOpacity(0.49)
+                  : const Color(0xff181818),
               firstButtonBorderColor: const Color(0xff181818).withOpacity(0.2),
             ),
           ]),

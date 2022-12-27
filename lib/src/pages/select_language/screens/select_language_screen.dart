@@ -86,11 +86,7 @@ class _SelectLanguageState extends State<SelectLanguage> {
                                                : isSelected.add(obj);
                                          });
                                        }),
-                                   // Radio(value: isValue, groupValue: 'groupValue', onChanged: (val){
-                                   //   setState(() {
-                                   //     obj["isTapped"] =! obj["isTapped"];
-                                   //   });
-                                   // })
+
                                  ],
                                );
                              }).toList(),
@@ -131,44 +127,4 @@ class _SelectLanguageState extends State<SelectLanguage> {
   }
 }
 
-// Wrap(
-// spacing: 20,
-// children: interest.map((index) => GestureDetector(
-// onTap: (){
-// setState((){
-// selected.contains(index)?
-// selected.remove(index): selected.add(index);
-// });
-// },
-// child: Padding(
-// padding:  const EdgeInsets.symmetric(vertical: 5) ,
-// child: Card(
-// elevation: 0,
-// shape: RoundedRectangleBorder(
-// side: BorderSide(
-// color: selected.contains(index)? Colors.teal : Colors.black,
-// ),
-// borderRadius: BorderRadius.circular(100),
-// ),
-// child: Padding(
-// padding: const EdgeInsets.all(10),
-// child: Row(
-// mainAxisSize: MainAxisSize.min,
-// children: [
-// Text(
-// index,
-//
-// ),
-// selected.contains(index)
-// ? const Icon(
-// Icons.check,
-// size: 20,
-// )
-// : Container(),
-// ],
-// ),
-// ),
-// ),
-// ),
-// )).toList(),
-// ),
+

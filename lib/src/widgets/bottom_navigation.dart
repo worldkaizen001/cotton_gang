@@ -1,17 +1,12 @@
+import 'package:cotton_gang/src/pages/homepage/homepage_page.dart';
+import 'package:cotton_gang/src/pages/saved_screen/saved_screen_page.dart';
+import 'package:cotton_gang/src/pages/search/search_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iconsax/iconsax.dart';
 
-import 'package:cotton_gang/src/pages/homepage/homepage_page.dart';
-import 'package:cotton_gang/src/pages/profile/profile_page.dart';
-import 'package:cotton_gang/src/pages/saved_screen/saved_screen_page.dart';
-
-import 'package:cotton_gang/src/pages/search/search_page.dart';
-
 import '../pages/forget_password/forget_password_page.dart';
-import '../pages/product_details/product_details_page.dart';
-import '../pages/register/register_page.dart';
 
 class BottomNavigation extends HookWidget {
   const BottomNavigation({Key? key}) : super(key: key);

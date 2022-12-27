@@ -16,6 +16,18 @@ class _SplashScreenState extends State<SplashScreen>
           begin:  Offset.zero, end:  Offset.zero)
       .animate(CurvedAnimation(parent: controller, curve: Curves.elasticIn));
 
+  void nav (){
+    Timer.periodic(Duration(seconds: 5), (timer) {
+      context.pushReplacement('/navbar');
+    });
+  }
+
+  @override
+  void initState() {
+   nav();
+    super.initState();
+  }
+
   @override
   void dispose() {
     controller.dispose();

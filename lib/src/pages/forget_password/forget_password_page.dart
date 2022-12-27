@@ -11,3 +11,5 @@ part 'screens/gmail_screen.dart';
 
 part 'screens/forget_password.dart';
 part 'screens/create_new_password.dart';
+part 'widget/icon_and_title_section.dart';
+part 'widget/image_and_title_section.dart';

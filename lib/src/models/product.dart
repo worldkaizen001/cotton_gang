@@ -18,7 +18,30 @@ class Product {
       required this.vendorName});
 }
 
-// List<Product> products = [
-//   Product(productDescription: 'bad ass', id: 1, productName: 'balance', price: 250, productImage: CGangImages.female, vendorName: 'rume volt', isLiked: false),
-//   Product(productDescription: 'clean shirt', id: 2, productName: 'puma', price: 300, productImage: CGangImages.product1, vendorName: 'lelly bobs', isLiked: false),
-// ];
+List<Product> products = [
+  Product(
+      productImages: [CGangImages.savedEmptyState, CGangImages.unisex,CGangImages.searchEmptyState],
+      productDescription: 'bad ass',
+      id: 1,
+      productName: 'balance',
+      price: 250,
+      vendorName: 'rume volt',
+      isLiked: false),
+  Product(
+      productImages: [CGangImages.logo, CGangImages.boarding1,CGangImages.female],
+      productDescription: 'clean shirt',
+      id: 2,
+      productName: 'puma',
+      price: 300,
+      vendorName: 'lelly bobs',
+      isLiked: false),
+  Product(
+      productImages: [CGangImages.lvBag, CGangImages.unisex,CGangImages.female],
+      productDescription: 'bad ass',
+      id: 1,
+      productName: 'balance',
+      price: 250,
+      vendorName: 'rume volt',
+      isLiked: false),
+];
+

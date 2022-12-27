@@ -10,32 +10,7 @@ class GmailScreen extends StatelessWidget {
         padding: const EdgeInsets.only(left: 20, right: 20, top: 120),
         child: Column(
           children: [
-            Image.asset(
-              CGangImages.envelop,
-              height: 112,
-              width: 112,
-              fit: BoxFit.cover,
-            ),
-            CustomSizedBox.verticalSpace(40),
-            Text(
-              'Open your mail',
-              style: GoogleFonts.prompt(
-                fontWeight: FontWeight.w600,
-                fontSize: 25,
-                color: const Color(0xff181818),
-              ),
-            ),
-            CustomSizedBox.verticalSpace(7),
-            Text(
-              'We have sent a password recovery \ninstructions to your email',
-              textAlign: TextAlign.center,
-              style: GoogleFonts.prompt(
-                fontWeight: FontWeight.w400,
-                fontSize: 14,
-                color: const Color(0xff697367),
-              ),
-            ),
-            CustomSizedBox.verticalSpace(120),
+            const ImageAndTitle(),
 
             Center(
               child: CGangButton(
@@ -57,3 +32,5 @@ class GmailScreen extends StatelessWidget {
     );
   }
 }
+
+
