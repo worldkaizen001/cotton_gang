@@ -130,7 +130,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         emailController.text.isEmpty
                     ? const Color(0xff181818).withOpacity(0.49)
                     : const Color(0xff181818),
-                firstButtonBorderColor: const Color(0xff181818).withOpacity(0.2),
+                firstButtonBorderColor: const Color(0xff181818).withOpacity(0.21),
               ),
             ]),
           ),
