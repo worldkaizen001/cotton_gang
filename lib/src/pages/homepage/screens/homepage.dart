@@ -42,6 +42,7 @@ class _HomepageScreenState extends State<HomepageScreen> {
                                   )));
                     },
                     child: ProductCard(
+                      menuIconTapped: () {},
                       iconTapped: () {
                         setState(() {
                           obj.isLiked = !obj.isLiked;

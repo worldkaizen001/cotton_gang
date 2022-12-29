@@ -39,7 +39,6 @@ class ThreeButtons extends StatelessWidget {
               fontSize: 15,
               color: const Color(0xffF9F9F9)),
           borderRadius: 4,
-          borderColor: firstButtonBorderColor,
         ),
         CustomSizedBox.verticalSpace(28),
         Row(
@@ -58,7 +57,6 @@ class ThreeButtons extends StatelessWidget {
                   fontSize: 15,
                   color: const Color(0xffF9F9F9)),
               borderRadius: 4,
-              borderColor: const Color(0xff181818).withOpacity(0.00),
             ),
             CGangButton(
               title: 'Google',
@@ -73,11 +71,10 @@ class ThreeButtons extends StatelessWidget {
                   fontSize: 15,
                   color: const Color(0xffF9F9F9)),
               borderRadius: 4,
-              borderColor: const Color(0xff181818).withOpacity(0.00),
             ),
           ],
         ),
-        CustomSizedBox.verticalSpace(36),
+        CustomSizedBox.verticalSpace(30),
         const Divider(
           color: Color(0xff697367),
           thickness: 0.6,

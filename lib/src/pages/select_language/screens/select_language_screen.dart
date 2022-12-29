@@ -26,99 +26,103 @@ class _SelectLanguageState extends State<SelectLanguage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-               Image.asset(
-                 CGangImages.logo,
-                 height: ScreenSize.height(context) * 0.27,
-                 width: ScreenSize.width(context) * 0.27,
-               ),
-               Padding(
-                 padding: const EdgeInsets.only(left: 15, top: 15, right: 20),
-                 child: SizedBox(
-                   height: 180,
-                   width: 300,
-                   child: Card(
-                     shape: RoundedRectangleBorder(
-                         borderRadius: BorderRadius.circular(15)),
-                     color: const Color(0xfff9f9f9),
-                     child: Padding(
-                       padding:
-                           const EdgeInsets.only(left: 15, right: 15, top: 15),
-                       child: Column(
-                         children: [
-                           Text(
-                             'Select preferred language',
-                             style: GoogleFonts.prompt(
-                               textStyle: const TextStyle(
-                                 color: Color(0xff181818),
-                                 fontSize: 17,
-                                 fontWeight: FontWeight.w600,
-                               ),
-                             ),
-                           ),
-                           Column(
-                             children: language.map((obj) {
-                               bool isValue = obj["isTapped"];
-                               String text = obj["lang"];
-                               return Row(
-                                 mainAxisAlignment:
-                                     MainAxisAlignment.spaceBetween,
-                                 children: [
-                                   Text(
-                                     text,
-                                     style: GoogleFonts.prompt(
-                                       fontWeight: FontWeight.w400,
-                                       fontSize: 15,
-                                       color: const Color(0xff181818),
-                                     ),
-                                   ),
-                                   Checkbox(
-                                       value: isValue,
-                                       shape: const CircleBorder(),
-                                       onChanged: (_) {
-                                         setState(() {
-                                           obj["isTapped"] = !obj["isTapped"];
-                                           // isValue =! isValue;
+              Image.asset(
+                CGangImages.logo,
+                height: ScreenSize.height(context) * 0.27,
+                width: ScreenSize.width(context) * 0.27,
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 15, top: 15, right: 20),
+                child: SizedBox(
+                  height: 180,
+                  width: 300,
+                  child: Card(
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(15)),
+                    color: const Color(0xfff9f9f9),
+                    child: Padding(
+                      padding:
+                          const EdgeInsets.only(left: 15, right: 15, top: 15),
+                      child: Column(
+                        children: [
+                          Text(
+                            'Select preferred language',
+                            style: GoogleFonts.prompt(
+                              textStyle: const TextStyle(
+                                color: Color(0xff181818),
+                                fontSize: 17,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                          ),
+                          Column(
+                            children: language.map((obj) {
+                              bool isValue = obj["isTapped"];
+                              String text = obj["lang"];
+                              return Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    text,
+                                    style: GoogleFonts.prompt(
+                                      fontWeight: FontWeight.w400,
+                                      fontSize: 15,
+                                      color: const Color(0xff181818),
+                                    ),
+                                  ),
+                                  Checkbox(
+                                    activeColor: Color(0xff181818),
+                                      value: isValue,
+                                      shape: const CircleBorder(),
+                                      onChanged: (_) {
+                                        setState(() {
+                                          obj["isTapped"] = !obj["isTapped"];
 
-                                           isChecked = obj["isTapped"];
 
-                                           isSelected.contains(obj)
-                                               ? isSelected.remove(obj)
-                                               : isSelected.add(obj);
-                                         });
-                                       }),
+                                          isSelected.contains(obj)
+                                              ? isSelected.remove(obj)
+                                              : isSelected.add(obj);
+                                        });
+                                      }),
+                                ],
+                              );
+                            }).toList(),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ),
 
-                                 ],
-                               );
-                             }).toList(),
-                           ),
-                         ],
-                       ),
-                     ),
-                   ),
-                 ),
-               ),
-               // CustomSizedBox.verticalSpace(40),
-               // CGangButton(
-               //   title: 'Select',
-               //   buttonHeight: 0.060,
-               //   buttonWidth: 1,
-               //   buttonColor: isSelected.isEmpty
-               //       ? const Color(0xff181818).withOpacity(0.49)
-               //       : const Color(0xff181818),
-               //   callBack: isSelected.isEmpty ? () {} : () {},
-               //   textStyle: GoogleFonts.prompt(
-               //       fontWeight: FontWeight.w400,
-               //       fontSize: 15,
-               //       color: const Color(0xffF9F9F9)),
-               //   borderRadius: 4,
-               //   borderColor: const Color(0xff181818),
-               // ),
               const SizedBox(
-                 height: 50,
-               ),
+                height: 50,
+              ),
 
+              CGangButton(
+                title: 'Select',
+                buttonHeight: 0.060,
+                buttonWidth: 1,
+                buttonColor: isSelected.isEmpty
+                    ? const Color(0xff181818).withOpacity(0.49)
+                    : const Color(0xff181818),
+                callBack: isSelected.isEmpty
+                    ? () {
+                        ScaffoldMessenger.of(context)
+                            .showSnackBar( const SnackBar(
 
-
+                          content: Text('Please select a language'),
+                          duration: Duration(seconds: 3),
+                        ));
+                      }
+                    : () {},
+                textStyle: GoogleFonts.prompt(
+                    fontWeight: FontWeight.w400,
+                    fontSize: 15,
+                    color: const Color(0xffF9F9F9)),
+                borderRadius: 4,
+              ),
             ],
           ),
         ),
@@ -126,5 +130,3 @@ class _SelectLanguageState extends State<SelectLanguage> {
     );
   }
 }
-
-

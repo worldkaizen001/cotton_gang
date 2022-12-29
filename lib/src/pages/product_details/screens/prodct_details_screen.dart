@@ -41,6 +41,9 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
             child: Column(
               children: [
                 const TopRowSection(),
+               const  SizedBox(
+                  height: 20,
+                ),
                 PageViewAndController(
                   controller: controller,
                   newImages: widget.newImages,

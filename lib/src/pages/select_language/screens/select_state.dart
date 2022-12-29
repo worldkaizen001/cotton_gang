@@ -89,7 +89,14 @@ class _SelectStateState extends State<SelectState> {
                 buttonColor: isSelected.isEmpty
                     ? const Color(0xff181818).withOpacity(0.49)
                     : const Color(0xff181818),
-                callBack: isSelected.isEmpty ? () {} : () {},
+                callBack: isSelected.isEmpty ? () {
+                  ScaffoldMessenger.of(context)
+                      .showSnackBar( const SnackBar(
+
+                    content: Text('Please select a state'),
+                    duration: Duration(seconds: 3),
+                  ));
+                } : () {},
                 textStyle: GoogleFonts.prompt(
                     fontWeight: FontWeight.w400,
                     fontSize: 15,

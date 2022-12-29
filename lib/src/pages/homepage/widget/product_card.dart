@@ -2,13 +2,14 @@ part of 'package:cotton_gang/src/pages/homepage/homepage_page.dart';
 
 
 class ProductCard extends StatefulWidget {
-  final Function iconTapped;
+  final Function iconTapped, menuIconTapped;
   final bool isLiked;
   final String productImage, vendorName, productName, productDescription;
   final double price;
 
   const ProductCard(
       {required this.productDescription,
+        required this.menuIconTapped,
         required this.isLiked,
         required this.productName,
         required this.iconTapped,
@@ -61,10 +62,13 @@ class _ProductCardState extends State<ProductCard> {
                         width: 40,
                         child: Card(
                           color: Colors.black.withOpacity(0.45),
-                          child: const Center(
-                            child: Icon(
-                              Iconsax.add,
-                              color: Colors.white,
+                          child:  InkWell(
+                            onTap: (){
+                             widget.menuIconTapped();
+                            },
+                            child: const Center(
+                              child: Icon(Icons.add,size: 23,color: Colors.white,),
+
                             ),
                           ),
                         ),

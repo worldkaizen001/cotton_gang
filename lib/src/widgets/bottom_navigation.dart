@@ -7,6 +7,9 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:iconsax/iconsax.dart';
 
 import '../pages/forget_password/forget_password_page.dart';
+import '../pages/login/login_page.dart';
+import '../pages/register/register_page.dart';
+import '../pages/select_language/select_language_page.dart';
 
 class BottomNavigation extends HookWidget {
   const BottomNavigation({Key? key}) : super(key: key);
@@ -18,8 +21,9 @@ class BottomNavigation extends HookWidget {
     final children = [
       const HomepageScreen(),
       const SearchScreen(),
-      const SavedScreen(),
-      CreateNewPassword(),
+      RegisterScreen(),
+      // const SavedScreen(),
+     LoginScreen(),    // CreateNewPassword(),
 
 
       // const ProfileScreen(),
