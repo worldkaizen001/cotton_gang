@@ -50,7 +50,7 @@ class ThreeButtons extends StatelessWidget {
               buttonWidth: 0.413,
               buttonColor: const Color(0xff3B5998),
               callBack: () {
-                firstButtonCallback();
+                facebookButtonCallback();
               },
               textStyle: GoogleFonts.prompt(
                   fontWeight: FontWeight.w400,

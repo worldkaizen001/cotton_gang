@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "827793958458",
+    "project_id": "cottongang-3d44e",
+    "storage_bucket": "cottongang-3d44e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:827793958458:android:0389418ebdded4a604f703",
+        "android_client_info": {
+          "package_name": "com.example.cotton_gang"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "827793958458-acn2tu4e78in4h89eft823g683b7qk7f.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.cotton_gang",
+            "certificate_hash": "499b4b6b65cffdd6bf7dca059cc3ca8b89f578f3"
+          }
+        },
+        {
+          "client_id": "827793958458-2jkt06p9bnv16f0cabo06rj183kmvesi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAf_RciPzDIi0oY121zbMalzGgcNZDA1sk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "827793958458-2jkt06p9bnv16f0cabo06rj183kmvesi.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

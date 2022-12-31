@@ -1,12 +1,15 @@
 import 'package:cotton_gang/src/pages/onboarding/onboarding_page.dart';
 import 'package:cotton_gang/src/widgets/bottom_navigation.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'core/routes.dart';
 
 
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(const MyApp());
 }
 
@@ -23,6 +26,7 @@ class MyApp extends StatelessWidget {
 
       ),
       home:  BottomNavigation(),
+      // AuthService().handleAuthState(),
       // routerConfig: router,
     );
   }

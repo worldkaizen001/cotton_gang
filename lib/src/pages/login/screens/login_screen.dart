@@ -14,6 +14,7 @@ class _LoginScreenState extends State<LoginScreen> {
   final phoneController = TextEditingController();
 
   bool obscure = false;
+  bool isLoading = false;
 
   @override
   Widget build(BuildContext context) {
@@ -119,11 +120,27 @@ class _LoginScreenState extends State<LoginScreen> {
               ThreeButtons(
                 alternativeCallback: () {},
                 alternativeTitle: 'SIGN-UP INSTEAD',
-                facebookButtonCallback: () {},
+                facebookButtonCallback: () {
+                  AuthService().signInWithFacebook().then((value) {
+                    Navigator.push(context, MaterialPageRoute(builder: (context){
+                      return HomepageScreen();
+                    }));
+                  });
+
+                },
                 firstButtonCallback:  () {
                         if (formGlobalKey.currentState!.validate()) {}
                       },
-                googleButtonCallback: () {},
+                googleButtonCallback: () {
+
+                      AuthService().signInWithGoogle().then((value) {
+                        Navigator.push(context, MaterialPageRoute(builder: (context){
+                          return HomepageScreen();
+                        }));
+
+                      });
+
+                },
                 firstButtonTitle: 'Continue',
                 firstButtonColor: passwordController.text.isEmpty ||
                         phoneController.text.isEmpty ||

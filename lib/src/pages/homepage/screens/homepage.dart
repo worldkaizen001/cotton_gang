@@ -11,6 +11,8 @@ class _HomepageScreenState extends State<HomepageScreen> {
   List<Product> favorites = [];
   bool toggle = false;
 
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,7 +24,8 @@ class _HomepageScreenState extends State<HomepageScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Titles(
+              // Text(FirebaseAuth.instance.currentUser!.displayName!),
+               const Titles(
                 title: 'Home',
               ),
               Column(

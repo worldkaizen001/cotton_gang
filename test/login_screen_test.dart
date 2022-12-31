@@ -82,7 +82,7 @@ void main() {
                 alternativeTitle: 'SIGN-UP INSTEAD',
                 googleButtonCallback: () {},
                 facebookButtonCallback: () {},
-                firstButtonTitle: 'Continue',
+                firstButtonTitle: 'Continue', 
                 firstButtonCallback: () {}),
           )));
     });
