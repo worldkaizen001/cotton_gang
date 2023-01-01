@@ -82,7 +82,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   alternativeTitle: 'SIGN-IN INSTEAD',
                   facebookButtonCallback: () {},
                   firstButtonCallback: () {
-                    if (formGlobalKey.currentState!.validate()) {}
+                    if (formGlobalKey.currentState!.validate()) {
+                      Navigator.push(context, MaterialPageRoute(builder: (context){
+                        return CreatePassword(fname: firstnameController,lname: lastnameController ,);}));
+                    }
 
                   },
                   googleButtonCallback: () {},

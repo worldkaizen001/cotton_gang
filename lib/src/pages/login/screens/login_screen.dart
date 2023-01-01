@@ -13,6 +13,8 @@ class _LoginScreenState extends State<LoginScreen> {
   final emailController = TextEditingController();
   final phoneController = TextEditingController();
 
+  FirebaseAuth auth = FirebaseAuth.instance;
+
   bool obscure = false;
   bool isLoading = false;
 
@@ -103,7 +105,9 @@ class _LoginScreenState extends State<LoginScreen> {
               Align(
                 alignment: Alignment.bottomRight,
                 child: InkWell(
-                  onTap: () {},
+                  onTap: () {
+
+                  },
                   child: Text(
                     'Did you forget the password?',
                     style: GoogleFonts.prompt(
@@ -129,7 +133,9 @@ class _LoginScreenState extends State<LoginScreen> {
 
                 },
                 firstButtonCallback:  () {
-                        if (formGlobalKey.currentState!.validate()) {}
+                        if (formGlobalKey.currentState!.validate()) {
+                          AuthService().signInWithEmailAndPassword(emailController.text.trim(),passwordController.text.trim(), context);
+                        }
                       },
                 googleButtonCallback: () {
 
@@ -148,6 +154,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     ? const Color(0xff181818).withOpacity(0.49)
                     : const Color(0xff181818),
                 firstButtonBorderColor: const Color(0xff181818).withOpacity(0.21),
+
               ),
             ]),
           ),
@@ -156,3 +163,4 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 }
+

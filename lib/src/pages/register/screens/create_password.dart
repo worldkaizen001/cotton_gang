@@ -1,7 +1,8 @@
 part of 'package:cotton_gang/src/pages/register/register_page.dart';
 
 class CreatePassword extends StatefulWidget {
-  const CreatePassword({Key? key}) : super(key: key);
+  final TextEditingController fname,lname;
+  const CreatePassword({required this.fname,required this.lname,Key? key}) : super(key: key);
 
   @override
   State<CreatePassword> createState() => _CreatePasswordState();
@@ -103,7 +104,10 @@ class _CreatePasswordState extends State<CreatePassword> {
                 callBack:passwordController.text.isEmpty || confirmPasswordController.text.isEmpty? (){
                   debugPrint('no way o');
                 }: () {
-                  if (formGlobalKey.currentState!.validate()) {}
+                  if (formGlobalKey.currentState!.validate()) {
+                    Navigator.push(context, MaterialPageRoute(builder: (context){
+                      return PhoneAndEmailScreen(pword: passwordController,cpword: confirmPasswordController,lname:widget.lname,fname: widget.fname,);}));
+                  }
 
                 },
                 textStyle: GoogleFonts.prompt(

@@ -1,14 +1,23 @@
 
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:cotton_gang/src/models/user_model.dart';
 import 'package:cotton_gang/src/pages/homepage/homepage_page.dart';
 import 'package:cotton_gang/src/pages/login/login_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
+import '../widgets/bottom_navigation.dart';
+
 
 class AuthService {
+  final passwordController = TextEditingController();
+  final emailController = TextEditingController();
+  final phoneController = TextEditingController();
 
   handleAuthState(){
     return StreamBuilder(
@@ -60,6 +69,23 @@ class AuthService {
     // Once signed in, return the UserCredential
     return FirebaseAuth.instance.signInWithCredential(facebookAuthCredential);
   }
+
+  void signInWithEmailAndPassword (String email, String password, BuildContext context) async {
+    
+    FirebaseAuth.instance.signInWithEmailAndPassword(email: email, password: password).then((value){
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Logged in Successfully'),duration: Duration(seconds: 3),));
+      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context){
+        return  const BottomNavigation();
+      }));
+    }).catchError((e){
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Invalid Password or the user does not exist.'),duration: Duration(seconds: 5),));
+
+    });
+
+
+  }
+
+
 
 
 
