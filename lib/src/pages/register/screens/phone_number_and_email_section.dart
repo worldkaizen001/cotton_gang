@@ -4,8 +4,7 @@ class PhoneAndEmailScreen extends StatefulWidget {
   final TextEditingController fname, lname, pword, cpword;
 
   const PhoneAndEmailScreen(
-      {
-        required this.lname,
+      {required this.lname,
       required this.fname,
       required this.pword,
       required this.cpword,
@@ -20,9 +19,9 @@ class _PhoneAndEmailScreenState extends State<PhoneAndEmailScreen> {
   final formGlobalKey = GlobalKey<FormState>();
   final phoneController = TextEditingController();
   final emailController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.only(left: 25, right: 25, top: 50),
@@ -101,56 +100,6 @@ class _PhoneAndEmailScreenState extends State<PhoneAndEmailScreen> {
                 borderRadius: 4,
                 borderColor: const Color(0xff181818).withOpacity(0.02),
               ),
-              // RegistrationComponent(
-              //   onChangeTwo: (_){
-              //     setState(() {
-              //
-              //     });
-              //     return null;
-              //   },
-              //
-              //   onChangeOne: (_){
-              //     setState(() {
-              //
-              //     });
-              //     return null;
-              //   },
-              //   arrowBackCallback: () {},
-              //
-              //   buttonColor:
-              //       phoneController.text.isEmpty || emailController.text.isEmpty
-              //           ? const Color(0xff181818).withOpacity(0.49)
-              //           : Colors.teal,
-              //   buttonCallback: () {
-              //     if (formGlobalKey.currentState!.validate()) {
-              //
-              //     }
-              //   },
-              //   controllerOne: phoneController,
-              //   controllerTwo: emailController,
-              //   title: 'Sign-Up',
-              //   subtitleOne: 'Phone number',
-              //   subtitleTwo: 'Email address',
-              //   validatorOne: (val) {
-              //     if (val!.isEmpty) {
-              //       return 'Please enter password';
-              //     } else if (val.length < 6) {
-              //       return 'Password is too short';
-              //     }
-              //
-              //     return null;
-              //   },
-              //   validatorTwo: (val) {
-              //     if (val!.isEmpty) {
-              //       return 'Please enter password';
-              //     }
-              //     if (val.length < 6) {
-              //       return 'Password is too short';
-              //     }
-              //
-              //     return null;
-              //   },
-              // ),
             ],
           ),
         ),
