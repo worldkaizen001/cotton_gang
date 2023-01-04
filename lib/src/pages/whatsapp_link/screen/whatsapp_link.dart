@@ -43,7 +43,9 @@ class WhatsAppLinkScreen extends StatelessWidget {
               fontSize: 13,
               color: const Color(0xff181818)),),
           CustomSizedBox.verticalSpace(2),
+          CGangTextField(controller: whatsappController),
           CGangTextField(controller: whatsappController)
+
 
 
 
