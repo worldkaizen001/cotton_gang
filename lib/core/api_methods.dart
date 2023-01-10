@@ -108,7 +108,30 @@ dynamic processResponse(http.Response response) {
     case 500:
     default:
       throw FetchDataException(
-          message: 'Error occured with code ${response.statusCode}',
+          message: 'Error occur with code ${response.statusCode}',
           url: response.request?.url.toString());
   }
 }
+
+dynamic deleteLater(http.Response response) {
+  switch (response.statusCode) {
+    case 200:
+      var responseJson = utf8.decode(response.bodyBytes);
+      return responseJson;
+    case 400:
+      throw BadRequestException(
+          message: utf8.decode(response.bodyBytes),
+          url: response.request?.url.toString());
+    case 401:
+    case 403:
+      throw UnAuthorizedException(
+          message: utf8.decode(response.bodyBytes),
+          url: response.request?.url.toString());
+    case 500:
+    default:
+      throw FetchDataException(
+          message: 'Error occur with code ${response.statusCode}',
+          url: response.request?.url.toString());
+  }
+}
+
