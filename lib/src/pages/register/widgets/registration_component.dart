@@ -2,19 +2,24 @@ part of 'package:cotton_gang/src/pages/register/register_page.dart';
 
 
 class RegistrationComponent extends StatelessWidget {
-  final String? Function(String?) validatorOne, validatorTwo;
+  final String? Function(String?)? validatorOne, validatorTwo;
+  final String? Function(String?)? onChangeOne, onChangeTwo;
 
   final Function? arrowBackCallback, buttonCallback;
   final String title, subtitleOne, subtitleTwo;
   final TextEditingController controllerOne, controllerTwo;
-  final Color? suffixIconColor, suffixIconColor2;
+  final Color? suffixIconColor, suffixIconColor2, buttonColor;
   final IconData? suffixIcon, suffixIcon2;
   final Function? suffixIconFunction, suffixIconFunction2;
   final bool? obscure;
   final bool? obscure2;
 
   const RegistrationComponent(
-      { this.buttonCallback,
+      {
+        required this.onChangeOne,
+        required this.onChangeTwo,
+        this.buttonColor,
+        this.buttonCallback,
         this.suffixIcon,
         this.suffixIconColor2,
         this.suffixIconFunction2,
@@ -82,11 +87,12 @@ class RegistrationComponent extends StatelessWidget {
         ),
         CustomSizedBox.verticalSpace(5),
         CGangTextField(
+
           obscure: obscure,
           cursorColor: const Color(0xff181818),
           controller: controllerOne,
           validator: validatorOne,
-          onChanged: (val) {},
+          onChanged: onChangeOne,
           height: 0.060,
           width: 1,
           color: const Color(0xffE1DBDB),
@@ -116,17 +122,17 @@ class RegistrationComponent extends StatelessWidget {
           controller: controllerTwo,
           suffixIconColor: const Color(0xff8B8B8B),
           validator: validatorTwo,
-          onChanged: (val) {},
+          onChanged: onChangeTwo,
           height: 0.085,
           width: 1,
           color: const Color(0xffE1DBDB),
         ),
         CustomSizedBox.verticalSpace(40),
         CGangButton(
-          title: 'Continue',
+          title: 'Sign up',
           buttonHeight: 0.060,
           buttonWidth: 1,
-          buttonColor: const Color(0xff181818).withOpacity(0.49),
+          buttonColor: buttonColor!,
           callBack: () {
             buttonCallback!();
           },

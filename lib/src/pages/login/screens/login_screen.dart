@@ -13,7 +13,10 @@ class _LoginScreenState extends State<LoginScreen> {
   final emailController = TextEditingController();
   final phoneController = TextEditingController();
 
+  FirebaseAuth auth = FirebaseAuth.instance;
+
   bool obscure = false;
+  bool isLoading = false;
 
   @override
   Widget build(BuildContext context) {
@@ -102,7 +105,9 @@ class _LoginScreenState extends State<LoginScreen> {
               Align(
                 alignment: Alignment.bottomRight,
                 child: InkWell(
-                  onTap: () {},
+                  onTap: () {
+
+                  },
                   child: Text(
                     'Did you forget the password?',
                     style: GoogleFonts.prompt(
@@ -119,11 +124,29 @@ class _LoginScreenState extends State<LoginScreen> {
               ThreeButtons(
                 alternativeCallback: () {},
                 alternativeTitle: 'SIGN-UP INSTEAD',
-                facebookButtonCallback: () {},
+                facebookButtonCallback: () {
+                  AuthService().signInWithFacebook().then((value) {
+                    Navigator.push(context, MaterialPageRoute(builder: (context){
+                      return HomepageScreen();
+                    }));
+                  });
+
+                },
                 firstButtonCallback:  () {
-                        if (formGlobalKey.currentState!.validate()) {}
+                        if (formGlobalKey.currentState!.validate()) {
+                          AuthService().signInWithEmailAndPassword(emailController.text.trim(),passwordController.text.trim(), context);
+                        }
                       },
-                googleButtonCallback: () {},
+                googleButtonCallback: () {
+
+                      AuthService().signInWithGoogle().then((value) {
+                        Navigator.push(context, MaterialPageRoute(builder: (context){
+                          return HomepageScreen();
+                        }));
+
+                      });
+
+                },
                 firstButtonTitle: 'Continue',
                 firstButtonColor: passwordController.text.isEmpty ||
                         phoneController.text.isEmpty ||
@@ -131,6 +154,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     ? const Color(0xff181818).withOpacity(0.49)
                     : const Color(0xff181818),
                 firstButtonBorderColor: const Color(0xff181818).withOpacity(0.21),
+
               ),
             ]),
           ),
@@ -139,3 +163,4 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 }
+
