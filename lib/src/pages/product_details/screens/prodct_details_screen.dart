@@ -1,38 +1,36 @@
 part of 'package:cotton_gang/src/pages/product_details/product_details_page.dart';
 
-class ProductDetailsScreen extends StatefulWidget {
+final onTouch = StateProvider<int>((ref){
+  var currentIndexState = 0;
+  return currentIndexState;
+});
+
+class ProductDetailsScreen extends ConsumerWidget {
   final double price;
   final String ownerName;
   final String productName, productDescription, productImage;
   final List<String> newImages;
 
-  const ProductDetailsScreen(
-      {required this.newImages,
-      required this.productImage,
-      required this.price,
-      required this.ownerName,
-      required this.productDescription,
-      required this.productName,
-      Key? key})
+  const ProductDetailsScreen({required this.newImages,
+    required this.productImage,
+    required this.price,
+    required this.ownerName,
+    required this.productDescription,
+    required this.productName,
+    Key? key})
       : super(key: key);
 
   @override
-  State<ProductDetailsScreen> createState() => _ProductDetailsScreenState();
-}
+  Widget build(BuildContext context, WidgetRef ref) {
+    var  changeAll = ref.watch(onTouch);
 
-class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
-  dynamic currentState;
-  dynamic current;
 
-  final controller = PageController();
-  List<Map<String, dynamic>> btnList = [
-    {"title": "Description", "isClicked": false},
-    {"title": "More Details", "isClicked": false},
-    {"title": "reviews", "isClicked": false}
-  ];
-
-  @override
-  Widget build(BuildContext context) {
+    final controller = PageController();
+    List<Map<String, dynamic>> btnList = [
+      {"title": "Description", "isClicked": false,},
+      {"title": "More Details", "isClicked": false,},
+      {"title": "reviews", "isClicked": false,}
+    ];
     return Scaffold(
       body: SafeArea(
         child: Padding(
@@ -41,26 +39,29 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
             child: Column(
               children: [
                 const TopRowSection(),
-               const  SizedBox(
+                Text(changeAll.toString()),
+                const SizedBox(
                   height: 20,
                 ),
                 PageViewAndController(
                   controller: controller,
-                  newImages: widget.newImages,
-                  price: widget.price,
+                  newImages: newImages,
+                  price: price,
                 ),
                 SizedBox(
                   height: 30,
                   child: ListView.builder(
+                      // key: const PageStorageKey<String>('page'),
                       scrollDirection: Axis.horizontal,
                       itemCount: btnList.length,
                       itemBuilder: (context, index) {
+                        var title = btnList[index]["title"];
                         return GestureDetector(
                           onTap: () {
-                            setState(() {
-                              currentState = index;
-                              print(currentState);
+                            ref.read(onTouch.notifier).update((state){
+                           return   state = index;
                             });
+
                           },
                           child: AnimatedContainer(
                             duration: const Duration(milliseconds: 300),
@@ -68,29 +69,31 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                             width: 107,
                             margin: const EdgeInsets.only(left: 5, right: 5),
                             decoration: BoxDecoration(
-                              color: currentState == index
+                              color: changeAll == index
                                   ? const Color(0xff39FF14)
                                   : Colors.grey,
-                              borderRadius: currentState == index
+                              borderRadius: changeAll == index
                                   ? BorderRadius.circular(6)
                                   : BorderRadius.circular(6),
                             ),
                             child: Center(
-                                child: Text(
-                              btnList[index]["title"],
-                            )),
+                                child: Text(title
+                                  // btnList[index]["title"],
+                                )),
                           ),
                         );
                       }),
                 ),
-                if (currentState == 0)
+                if (changeAll == 0)
                   Description(
-                    ownerName: widget.ownerName,
-                    productName: widget.productName,
-                    productDescription: widget.productDescription,
+                    ownerName: ownerName,
+                    productName: productName,
+                    productDescription: productDescription,
                   ),
-                if (currentState == 1) const MoreDetails(),
-                if (currentState == 2) const ReviewComments(),
+                if (changeAll == 1) const MoreDetails(),
+                if (changeAll == 2) const ReviewComments(),
+
+
               ],
             ),
           ),
@@ -98,19 +101,21 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
       ),
     );
   }
-}
 
+
+
+}
 List<dynamic> reviews = [
   {
     "name": "jane Bo",
     "image": CGangImages.logo,
     "comments":
-        "I found a 2007 study on effects of hand sanitizers on blood alcohol level in adults. The 12 subjects applied 4 mL of hand sanitizer for 30 seconds per application, 20 applications over a 30 min period (total exposure time 10 min).",
+    "I found a 2007 study on effects of hand sanitizers on blood alcohol level in adults. The 12 subjects applied 4 mL of hand sanitizer for 30 seconds per application, 20 applications over a 30 min period (total exposure time 10 min).",
   },
   {
     "name": "welter ku",
     "image": CGangImages.female,
     "comments":
-        "I found a 2007 study on effects of hand sanitizers on blood alcohol level in adults. The 12 subjects applied 4 mL of hand sanitizer for 30 seconds per application, 20 applications over a 30 min period (total exposure time 10 min).",
+    "I found a 2007 study on effects of hand sanitizers on blood alcohol level in adults. The 12 subjects applied 4 mL of hand sanitizer for 30 seconds per application, 20 applications over a 30 min period (total exposure time 10 min).",
   }
 ];

@@ -1,20 +1,19 @@
 part of 'package:cotton_gang/src/pages/homepage/homepage_page.dart';
 
-class HomepageScreen extends StatefulWidget {
+final changeState = StateProvider<bool>((ref) => false);
+class HomepageScreen extends ConsumerWidget {
   const HomepageScreen({Key? key}) : super(key: key);
 
-  @override
-  State<HomepageScreen> createState() => _HomepageScreenState();
-}
 
-class _HomepageScreenState extends State<HomepageScreen> {
-  List<Product> favorites = [];
-  bool toggle = false;
+  // List<Product> favorites = [];
+  // bool toggle = false;
 
 
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context,WidgetRef ref) {
+   var  change = ref.watch(changeState);
+   var savedItem = ref.watch(savedItemsProvider);
     return Scaffold(
       appBar: customAppBar(),
       endDrawer: const CustomEndDrawer(),
@@ -47,12 +46,21 @@ class _HomepageScreenState extends State<HomepageScreen> {
                     child: ProductCard(
                       menuIconTapped: () {},
                       iconTapped: () {
-                        setState(() {
-                          obj.isLiked = !obj.isLiked;
-                          toggle = !toggle;
+                     var toggle  =   ref.read(changeState.notifier).update((state) => !state);
 
-                          toggle ? favorites.add(obj) : favorites.remove(obj);
-                        });
+                        // var toggle = ref.read(changeState.notifier).state;
+
+                       obj.isLiked = toggle;
+
+
+                       obj.isLiked?  savedItem.addToSavedItems(obj):savedItem.removeSavedItems(obj);
+
+                        // setState(() {
+                        //   obj.isLiked = !obj.isLiked;
+                        //   toggle = !toggle;
+                        //
+                        //   toggle ? favorites.add(obj) : favorites.remove(obj);
+                        // });
                       },
                       isLiked: obj.isLiked,
                       price: obj.price,

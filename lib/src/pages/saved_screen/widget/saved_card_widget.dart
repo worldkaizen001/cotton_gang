@@ -1,28 +1,25 @@
-part of 'package:cotton_gang/src/pages/homepage/homepage_page.dart';
+part of 'package:cotton_gang/src/pages/saved_screen/saved_screen_page.dart';
 
 
-class ProductCard extends ConsumerWidget {
+class SavedItemsCard extends ConsumerWidget {
   final Function iconTapped, menuIconTapped;
   final bool isLiked;
   final String productImage, vendorName, productName, productDescription;
   final double price;
-
-  const ProductCard(
-      {required this.productDescription,
-        required this.menuIconTapped,
-        required this.isLiked,
-        required this.productName,
-        required this.iconTapped,
-        required this.productImage,
-        required this.price,
-        required this.vendorName,
-        Key? key})
-      : super(key: key);
-
+  const SavedItemsCard({
+    required this.productDescription,
+    required this.menuIconTapped,
+    required this.isLiked,
+    required this.productName,
+    required this.iconTapped,
+    required this.productImage,
+    required this.price,
+    required this.vendorName,
+    Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return Column(
+     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
@@ -60,7 +57,7 @@ class ProductCard extends ConsumerWidget {
                           color: Colors.black.withOpacity(0.45),
                           child:  InkWell(
                             onTap: (){
-                             menuIconTapped();
+                              menuIconTapped();
                             },
                             child: const Center(
                               child: Icon(Icons.add,size: 23,color: Colors.white,),
@@ -119,9 +116,7 @@ class ProductCard extends ConsumerWidget {
                     onPressed: () {
                       iconTapped();
                     },
-                    icon: isLiked
-                        ? const Icon(Iconsax.heart5)
-                        : const Icon(Iconsax.heart),
+                    icon: const Icon(Iconsax.trash),
                     color: const Color(0xff39FF14),
                   )),
               Positioned(
