@@ -21,8 +21,8 @@ class BottomNavigation extends HookWidget {
     final children = [
       const HomepageScreen(),
       const SearchScreen(),
-      RegisterScreen(),
-      // const SavedScreen(),
+      // RegisterScreen(),
+      const SavedScreen(),
      LoginScreen(),    // CreateNewPassword(),
 
 

@@ -1,5 +1,6 @@
 
 
+import 'package:cotton_gang/src/models/product.dart';
 import 'package:cotton_gang/src/widgets/text_field.dart';
 import 'package:flutter/material.dart';
 

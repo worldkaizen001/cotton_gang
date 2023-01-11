@@ -6,10 +6,12 @@ import 'package:cotton_gang/src/helpers/custome_sizedbox.dart';
 import 'package:cotton_gang/src/helpers/images.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iconsax/iconsax.dart';
 
 import '../../models/product.dart';
+import '../../providers/saved_item.dart';
 import '../../widgets/custom_appbar.dart';
 import '../../widgets/drawer_component.dart';
 import '../product_details/product_details_page.dart';
