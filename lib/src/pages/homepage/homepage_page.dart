@@ -10,6 +10,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iconsax/iconsax.dart';
 
+import '../../../core/api_methods.dart';
 import '../../models/product.dart';
 import '../../providers/saved_item.dart';
 import '../../widgets/custom_appbar.dart';

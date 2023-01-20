@@ -11,6 +11,7 @@ class CGangImages {
   static const searchEmptyState = 'images/search.png';
   static const lvBag = 'images/lvv.png';
   static const envelop = 'images/envelop.png';
+  static const emptyImage = 'images/emptyimage.png';
 
 
 

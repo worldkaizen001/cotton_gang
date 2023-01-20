@@ -4,12 +4,19 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter/services.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:http/http.dart' as http;
 import 'package:cotton_gang/core/exception.dart';
 
-String baseUrl = 'https://jsonplaceholder.typicode.com';
+final futureApiProvider = FutureProvider.autoDispose((ref) {
+ final  api = ref.watch(apiProvider);
+ return api.get('https://jsonplaceholder.typicode.com');
+});
+
+final  apiProvider = Provider<ApiServices>((ref)=> ApiServices());
 
 class ApiServices {
+  String baseUrl = 'https://jsonplaceholder.typicode.com';
   var client = http.Client();
 
 //Http Get Method
