@@ -2,7 +2,8 @@ part of 'package:cotton_gang/src/pages/product_details/product_details_page.dart
 
 
 class TopRowSection extends StatelessWidget {
-  const TopRowSection({Key? key}) : super(key: key);
+  final String title;
+  const TopRowSection({required this.title,Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +31,7 @@ class TopRowSection extends StatelessWidget {
         CustomSizedBox.horizontalSpace(60),
         Center(
           child: Text(
-            'Product details',
+            title,
             style: GoogleFonts.prompt(
               fontWeight: FontWeight.w600,
               fontSize: 17,

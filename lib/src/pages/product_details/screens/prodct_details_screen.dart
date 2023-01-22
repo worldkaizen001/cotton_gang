@@ -38,7 +38,7 @@ class ProductDetailsScreen extends ConsumerWidget {
           child: SingleChildScrollView(
             child: Column(
               children: [
-                const TopRowSection(),
+                const TopRowSection(title: 'Product details',),
                 Text(changeAll.toString()),
                 const SizedBox(
                   height: 20,
