@@ -22,25 +22,25 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
             children: [
               const CircleAvatar(
                 radius: 25,
-                backgroundImage: AssetImage(CGangImages.boarding1),
+                backgroundImage: AssetImage(CGangImages.logo),
               ),
               SizedBox(
                 height: ScreenSize.height(context) * 0.48,
                 child: PageView(controller: controller, children:  const [
                   OnboadringImagesAndTitle(
-                    images: CGangImages.logo,
+                    images: CGangImages.boarding1,
                     title: 'Affordable',
                     description:
                         'Purchase finese clothes that are within your budget.',
                   ),
                   OnboadringImagesAndTitle(
-                    images:  CGangImages.logo,
+                    images:  CGangImages.boarding2,
                     title: 'Discover',
                     description:
                         'Discover dope clothes and vendors withi your location.',
                   ),
                   OnboadringImagesAndTitle(
-                    images:  CGangImages.logo,
+                    images:  CGangImages.boarding1,
                     title: 'Earn',
                     description:
                         'Make more money by posting and sharing your products on cotton gang .',
@@ -67,7 +67,9 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                 buttonHeight: 0.060,
                 buttonWidth: 1,
                 buttonColor: const Color(0xff181818),
-                callBack: () {},
+                callBack: () {
+                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context){return RegisterScreen();}));
+                },
                 textStyle: GoogleFonts.prompt(
                     fontWeight: FontWeight.w400,
                     fontSize: 15,
@@ -81,7 +83,10 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                 buttonHeight: 0.060,
                 buttonWidth: 1,
                 buttonColor: const Color(0xffF9F9F9),
-                callBack: () {},
+                callBack: () {
+                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context){return LoginScreen();}));
+
+                },
                 textStyle: GoogleFonts.prompt(
                     fontWeight: FontWeight.w400,
                     fontSize: 15,

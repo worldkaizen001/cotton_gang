@@ -78,14 +78,18 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 ),
                 CustomSizedBox.verticalSpace(40),
                 ThreeButtons(
-                  alternativeCallback: () {},
+                  alternativeCallback: () {
+
+                  },
                   alternativeTitle: 'SIGN-IN INSTEAD',
                   facebookButtonCallback: () {},
                   firstButtonCallback: () {
-                    if (formGlobalKey.currentState!.validate()) {
-                      Navigator.push(context, MaterialPageRoute(builder: (context){
-                        return CreatePassword(fname: firstnameController,lname: lastnameController ,);}));
-                    }
+                    Navigator.push(context, MaterialPageRoute(builder: (context){
+                      return SelectLanguage();}));
+                    // if (formGlobalKey.currentState!.validate()) {
+                    //   Navigator.push(context, MaterialPageRoute(builder: (context){
+                    //     return CreatePassword(fname: firstnameController,lname: lastnameController ,);}));
+                    // }
 
                   },
                   googleButtonCallback: () {},

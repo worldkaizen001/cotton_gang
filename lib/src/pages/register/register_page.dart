@@ -13,6 +13,8 @@ import 'package:cotton_gang/src/helpers/screen_size.dart';
 
 import '../../models/user_model.dart';
 import '../../widgets/bottom_navigation.dart';
+import '../login/login_page.dart';
+import '../select_language/select_language_page.dart';
 
 part 'screens/register_screen.dart';
 

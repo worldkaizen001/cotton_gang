@@ -1,4 +1,5 @@
 import 'package:cotton_gang/src/pages/homepage/homepage_page.dart';
+import 'package:cotton_gang/src/pages/post_item/post_item_page.dart';
 import 'package:cotton_gang/src/pages/saved_screen/saved_screen_page.dart';
 import 'package:cotton_gang/src/pages/search/search_page.dart';
 import 'package:flutter/material.dart';
@@ -23,7 +24,9 @@ class BottomNavigation extends HookWidget {
       const SearchScreen(),
       // RegisterScreen(),
       const SavedScreen(),
-     LoginScreen(),    // CreateNewPassword(),
+     // LoginScreen(),
+      // CreateNewPassword(),
+      PostItemScreen()
 
 
       // const ProfileScreen(),
@@ -75,7 +78,7 @@ class BottomNavigation extends HookWidget {
             ),
             BottomNavigationBarItem(
               icon: Icon(Iconsax.personalcard),
-              label: 'Profile',
+              label: 'Post',
             ),
           ],
         ),

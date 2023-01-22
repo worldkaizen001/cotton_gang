@@ -116,7 +116,10 @@ class _SelectLanguageState extends State<SelectLanguage> {
                           duration: Duration(seconds: 3),
                         ));
                       }
-                    : () {},
+                    : () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context){
+                    return SelectState();}));
+                },
                 textStyle: GoogleFonts.prompt(
                     fontWeight: FontWeight.w400,
                     fontSize: 15,
