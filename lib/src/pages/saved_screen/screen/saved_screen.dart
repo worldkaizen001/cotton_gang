@@ -28,14 +28,13 @@ class SavedScreen extends ConsumerWidget {
             const Titles(
               title: 'Saved',
             ),
-            Center(child: Text(savedItem.savedItemsList.length.toString())),
             // if (savedItem.savedItemsList.isEmpty) const GenericEmptyState(
             //         emptyStateImage: CGangImages.savedEmptyState,
             //         firstText: 'oops',
             //         secondText: 'Your saved list is empty!',
             //       ) else Column(children: [
             //         SizedBox(
-            //           height: 500,
+            //           height: 990,
             //           child: ListView.builder(
             //               key: const PageStorageKey<String>('pages'),
             //               itemCount: savedItem.savedItemsList.length,
@@ -97,38 +96,45 @@ class SavedScreen extends ConsumerWidget {
             //         ),
             //       ]),
 
-            Column(
-              key: const PageStorageKey<String>('static'),
 
-              children: savedItem.savedItemsList.map((item){
+            if (savedItem.savedItemsList.isEmpty) const GenericEmptyState(
+              emptyStateImage: CGangImages.savedEmptyState,
+              firstText: 'oops',
+              secondText: 'Your saved list is empty!',
+            )else Column(
+                key: const PageStorageKey<String>('static'),
 
-                return SavedItemsCard(productDescription: item.productDescription , menuIconTapped:(){}, isLiked: item.isLiked, productName: item.productName, iconTapped: (){
-    return showDialog(context: context, builder: (BuildContext context){
-                            return  AlertDialog(
-                              elevation: 10,
-                              backgroundColor: Colors.grey[200],
+                children: savedItem.savedItemsList.map((item){
 
-                              title: const Text('Delete Confirmation'),
-                              content: const Text('Are you sure you want to delete this item?'),
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10),),
-                              actions: [
-                                TextButton(onPressed: (){
-                                  savedItem.removeSavedItems(item);
-                                  Navigator.pop(context);
+                  return SavedItemsCard(productDescription: item.productDescription , menuIconTapped:(){}, isLiked: item.isLiked, productName: item.productName, iconTapped: (){
+                    return showDialog(context: context, builder: (BuildContext context){
+                      return  AlertDialog(
+                        elevation: 10,
+                        backgroundColor: Colors.grey[200],
+
+                        title: const Text('Delete Confirmation'),
+                        content: const Text('Are you sure you want to delete this item?'),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),),
+                        actions: [
+                          TextButton(onPressed: (){
+                            savedItem.removeSavedItems(item);
+                            Navigator.pop(context);
 
 
-                                }, child: const Text('Delete')),
-                                TextButton(onPressed: (){
-                                  Navigator.pop(context);
-                                }, child: const Text('Cancel'))
-                              ],
-                            );
-                          });
+                          }, child: const Text('Delete')),
+                          TextButton(onPressed: (){
+                            Navigator.pop(context);
+                          }, child: const Text('Cancel'))
+                        ],
+                      );
+                    });
 
-                }, productImage: item.productImages[0], price: item.price, vendorName: item.vendorName);
-              }).toList(),
-            )
+                  }, productImage: item.productImages[0], price: item.price, vendorName: item.vendorName);
+                }).toList(),
+              )
+
+
 
           ],
         ),

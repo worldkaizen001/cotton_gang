@@ -48,6 +48,19 @@ List<Product> products = [
       isLiked: false),
   Product(
       productImages: [
+        CGangImages.female,
+        CGangImages.unisex,
+        CGangImages.searchEmptyState
+      ],
+      productDescription:
+      'Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint.Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint.',
+      id: 1,
+      productName: 'Boy',
+      price: 250,
+      vendorName: 'Amin Sarr',
+      isLiked: false),
+  Product(
+      productImages: [
         CGangImages.lvBag,
         CGangImages.boarding1,
         CGangImages.female

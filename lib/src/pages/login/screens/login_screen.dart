@@ -125,26 +125,30 @@ class _LoginScreenState extends State<LoginScreen> {
                 alternativeCallback: () {},
                 alternativeTitle: 'SIGN-UP INSTEAD',
                 facebookButtonCallback: () {
-                  AuthService().signInWithFacebook().then((value) {
-                    Navigator.push(context, MaterialPageRoute(builder: (context){
-                      return HomepageScreen();
-                    }));
-                  });
+                  // AuthService().signInWithFacebook().then((value) {
+                  //   Navigator.push(context, MaterialPageRoute(builder: (context){
+                  //     return HomepageScreen();
+                  //   }));
+                  // });
 
                 },
                 firstButtonCallback:  () {
-                        if (formGlobalKey.currentState!.validate()) {
-                          AuthService().signInWithEmailAndPassword(emailController.text.trim(),passwordController.text.trim(), context);
-                        }
+                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context){
+                    return BottomNavigation();
+                  }));
+                  print('yammy');
+                        // if (formGlobalKey.currentState!.validate()) {
+                        //   AuthService().signInWithEmailAndPassword(emailController.text.trim(),passwordController.text.trim(), context);
+                        // }
                       },
                 googleButtonCallback: () {
 
-                      AuthService().signInWithGoogle().then((value) {
-                        Navigator.push(context, MaterialPageRoute(builder: (context){
-                          return HomepageScreen();
-                        }));
-
-                      });
+                      // AuthService().signInWithGoogle().then((value) {
+                      //   Navigator.push(context, MaterialPageRoute(builder: (context){
+                      //     return HomepageScreen();
+                      //   }));
+                      //
+                      // });
 
                 },
                 firstButtonTitle: 'Continue',

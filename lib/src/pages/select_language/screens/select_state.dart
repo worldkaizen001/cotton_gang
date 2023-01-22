@@ -96,7 +96,11 @@ class _SelectStateState extends State<SelectState> {
                     content: Text('Please select a state'),
                     duration: Duration(seconds: 3),
                   ));
-                } : () {},
+                } : () {
+                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context){
+                    return BottomNavigation();
+                  }));
+                },
                 textStyle: GoogleFonts.prompt(
                     fontWeight: FontWeight.w400,
                     fontSize: 15,

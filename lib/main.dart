@@ -1,4 +1,5 @@
 import 'package:cotton_gang/src/pages/onboarding/onboarding_page.dart';
+import 'package:cotton_gang/src/pages/post_item/post_item_page.dart';
 import 'package:cotton_gang/src/widgets/bottom_navigation.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -26,7 +27,9 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
 
       ),
-      home:  BottomNavigation(),
+      home: OnBoardingScreen()
+
+      // BottomNavigation(),
       // AuthService().handleAuthState(),
       // routerConfig: router,
     );
