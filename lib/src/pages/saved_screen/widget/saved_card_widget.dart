@@ -23,6 +23,7 @@ class SavedItemsCard extends ConsumerWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
+
           padding: const EdgeInsets.only(left: 16, right: 16, top: 20),
           child: Stack(
             children: [
@@ -160,7 +161,7 @@ class SavedItemsCard extends ConsumerWidget {
               ),
             ],
           ),
-        ),
+        ).animate().slideX(duration: Duration(milliseconds: 200),delay: Duration(milliseconds: 100)),
         TitleAndDescription(
           productTitle: productName,
           productDescription: productDescription,

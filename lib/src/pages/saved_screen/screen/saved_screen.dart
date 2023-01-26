@@ -100,8 +100,9 @@ class SavedScreen extends ConsumerWidget {
             if (savedItem.savedItemsList.isEmpty) const GenericEmptyState(
               emptyStateImage: CGangImages.savedEmptyState,
               firstText: 'oops',
-              secondText: 'Your saved list is empty!',
-            )else Column(
+              secondText: 'Your saved list is empty!',)
+                    .animate().fadeIn(duration: Duration(milliseconds: 300)).shake(delay: Duration(milliseconds: 400),duration: Duration(milliseconds: 350) )
+            else Column(
                 key: const PageStorageKey<String>('static'),
 
                 children: savedItem.savedItemsList.map((item){

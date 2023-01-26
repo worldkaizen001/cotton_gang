@@ -73,7 +73,7 @@ class PostItemScreenState extends ConsumerState<PostItemScreen> {
                       setState(() {});
                       return null;
                     },
-                  ),
+                  ).animate().slideX(duration: Duration(milliseconds: 200),delay: Duration(milliseconds: 50)),
                   CustomSizedBox.verticalSpace(30),
                   TextFieldAndTitle(
                     controller: productDetailsController,
