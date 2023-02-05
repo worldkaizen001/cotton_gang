@@ -14,6 +14,7 @@ class HomepageScreen extends ConsumerWidget {
   Widget build(BuildContext context,WidgetRef ref) {
    var  change = ref.watch(changeState);
    var savedItem = ref.watch(savedItemsProvider);
+   var stateItem = ref.watch(saveItemProvider);
     return Scaffold(
       appBar: customAppBar(),
       endDrawer: const CustomEndDrawer(),
@@ -59,6 +60,8 @@ class HomepageScreen extends ConsumerWidget {
 
 
                           obj.isLiked?  savedItem.addToSavedItems(obj):savedItem.removeSavedItems(obj);
+                          obj.isLiked?  ref.read(saveItemProvider.notifier).addItem(obj): ref.read(saveItemProvider.notifier).removeItem(obj);
+
 
                           // setState(() {
                           //   obj.isLiked = !obj.isLiked;

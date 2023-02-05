@@ -17,6 +17,8 @@ class SavedScreen extends ConsumerWidget {
       {"title": "reviews", "isClicked": false}
     ];
     final savedItem = ref.watch(savedItemsProvider);
+    final saveItemState = ref.watch(saveItemProvider);
+    var value = ValueNotifier(3);
 
     return Scaffold(
       appBar: customAppBar(),
@@ -25,9 +27,57 @@ class SavedScreen extends ConsumerWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            Center(
+              child: ValueListenableBuilder(
+                valueListenable: value,
+                builder: (context, valuer, _ ){
+                  return Text(valuer.toString());
+                },
+              ),
+            ),
             const Titles(
               title: 'Saved',
             ),
+
+           if(saveItemState.isEmpty) const GenericEmptyState(
+             emptyStateImage: CGangImages.savedEmptyState,
+             firstText: 'oops',
+             secondText: 'Your saved list is empty!',)
+           else Column(
+
+             key: const PageStorageKey<String>('stati'),
+
+             children: saveItemState.map((item){
+
+               return SavedItemsCard(productDescription: item.productDescription , menuIconTapped:(){}, isLiked: item.isLiked, productName: item.productName, iconTapped: (){
+                 return showDialog(context: context, builder: (BuildContext context){
+                   return  AlertDialog(
+                     elevation: 10,
+                     backgroundColor: Colors.grey[200],
+
+                     title: const Text('Delete Confirmation'),
+                     content: const Text('Are you sure you want to delete this item?'),
+                     shape: RoundedRectangleBorder(
+                       borderRadius: BorderRadius.circular(10),),
+                     actions: [
+                       TextButton(onPressed: (){
+                         ref.read(saveItemProvider.notifier).removeItem(item);
+                         // savedItem.removeSavedItems(item);
+                         Navigator.pop(context);
+
+
+                       }, child: const Text('Delete')),
+                       TextButton(onPressed: (){
+                         Navigator.pop(context);
+                       }, child: const Text('Cancel'))
+                     ],
+                   );
+                 });
+
+               }, productImage: item.productImages[0], price: item.price, vendorName: item.vendorName);
+             }).toList(),
+           ),
+
             // if (savedItem.savedItemsList.isEmpty) const GenericEmptyState(
             //         emptyStateImage: CGangImages.savedEmptyState,
             //         firstText: 'oops',
@@ -97,43 +147,44 @@ class SavedScreen extends ConsumerWidget {
             //       ]),
 
 
-            if (savedItem.savedItemsList.isEmpty) const GenericEmptyState(
-              emptyStateImage: CGangImages.savedEmptyState,
-              firstText: 'oops',
-              secondText: 'Your saved list is empty!',)
-                    .animate().fadeIn(duration: Duration(milliseconds: 300)).shake(delay: Duration(milliseconds: 400),duration: Duration(milliseconds: 350) )
-            else Column(
-                key: const PageStorageKey<String>('static'),
-
-                children: savedItem.savedItemsList.map((item){
-
-                  return SavedItemsCard(productDescription: item.productDescription , menuIconTapped:(){}, isLiked: item.isLiked, productName: item.productName, iconTapped: (){
-                    return showDialog(context: context, builder: (BuildContext context){
-                      return  AlertDialog(
-                        elevation: 10,
-                        backgroundColor: Colors.grey[200],
-
-                        title: const Text('Delete Confirmation'),
-                        content: const Text('Are you sure you want to delete this item?'),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),),
-                        actions: [
-                          TextButton(onPressed: (){
-                            savedItem.removeSavedItems(item);
-                            Navigator.pop(context);
-
-
-                          }, child: const Text('Delete')),
-                          TextButton(onPressed: (){
-                            Navigator.pop(context);
-                          }, child: const Text('Cancel'))
-                        ],
-                      );
-                    });
-
-                  }, productImage: item.productImages[0], price: item.price, vendorName: item.vendorName);
-                }).toList(),
-              )
+            // if (savedItem.savedItemsList.isEmpty) const GenericEmptyState(
+            //   emptyStateImage: CGangImages.savedEmptyState,
+            //   firstText: 'oops',
+            //   secondText: 'Your saved list is empty!',)
+            //         .animate().fadeIn(duration: Duration(milliseconds: 300)).shake(delay: Duration(milliseconds: 400),duration: Duration(milliseconds: 350) )
+            // else Column(
+            //   key: UniqueKey(),
+            //     // key: const PageStorageKey<String>('static'),
+            //
+            //     children: savedItem.savedItemsList.map((item){
+            //
+            //       return SavedItemsCard(productDescription: item.productDescription , menuIconTapped:(){}, isLiked: item.isLiked, productName: item.productName, iconTapped: (){
+            //         return showDialog(context: context, builder: (BuildContext context){
+            //           return  AlertDialog(
+            //             elevation: 10,
+            //             backgroundColor: Colors.grey[200],
+            //
+            //             title: const Text('Delete Confirmation'),
+            //             content: const Text('Are you sure you want to delete this item?'),
+            //             shape: RoundedRectangleBorder(
+            //               borderRadius: BorderRadius.circular(10),),
+            //             actions: [
+            //               TextButton(onPressed: (){
+            //                 savedItem.removeSavedItems(item);
+            //                 Navigator.pop(context);
+            //
+            //
+            //               }, child: const Text('Delete')),
+            //               TextButton(onPressed: (){
+            //                 Navigator.pop(context);
+            //               }, child: const Text('Cancel'))
+            //             ],
+            //           );
+            //         });
+            //
+            //       }, productImage: item.productImages[0], price: item.price, vendorName: item.vendorName);
+            //     }).toList(),
+            //   )
 
 
 
