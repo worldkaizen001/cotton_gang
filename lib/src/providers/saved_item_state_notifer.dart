@@ -19,6 +19,21 @@ class SaveItemNotifier extends StateNotifier< List<Product>>{
     state = state.where((p) => p != product ).toList();
   }
 
+  updateMethod(dynamic number,Product product){
+    final updatedList = <Product>[];
+    for(var i=0; i < state.length; i++){
+      if(state[i] == number){
+        updatedList.add(product);
+      }
+      else {
+        [
+        updatedList.add(state[i]),
+      ];
+      }
+      state = updatedList;
+    }
+  }
+
   void clearItem (){
      state = [];
   }

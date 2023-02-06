@@ -11,17 +11,25 @@ class _SearchScreenState extends State<SearchScreen> {
   final searchController = TextEditingController();
   dynamic boy;
 
-  List<dynamic> searchList = [];
+  List<dynamic> searchList = [
+  ];
 
-  dynamic  searchItem (String text){
-   var sum = products.where((sum)=> sum.productName == text);
-   setState(() {
-     searchList.add(sum);
 
-   });
+   findOne (String name){
+
+      products.where((sum) => sum.productName == name).map((e) {
+      return e;
+
+    }).toList();
+
+
 
 
   }
+
+
+
+
 
 
   @override
@@ -68,28 +76,25 @@ class _SearchScreenState extends State<SearchScreen> {
                     ),
                   ),
                 ),
-                IconButton(onPressed: (){searchItem(searchController.text);
-                  setState(() {
-                dynamic    boy = searchItem(searchController.text);
-                  });
+                IconButton(onPressed: (){
+                  findOne(searchController.text);
                   print(searchController.text);
-                  }, icon: Icon(Icons.send))
+
+
+                }, icon: Icon(Icons.send))
               ],
             ),
-            const GenericEmptyState(emptyStateImage:CGangImages.searchEmptyState, firstText: 'oops', secondText: 'Your saved list is empty!',),
+           searchList.isEmpty? const GenericEmptyState(emptyStateImage:CGangImages.searchEmptyState, firstText: 'oops', secondText: 'Your saved list is empty!',):
+           Column(
+             children: searchList.map((e) {
+               return Text(e);
+             }).toList()
+           ),
 
-            Column(
-              children: products.where((sum)=> sum.productName == searchController.text).map((e) {
-                return Card(
-                  child: Text(e.productName),
-                );
-      }).toList(),
-            ),
-            Column(
-              children: searchList.map((e){
-                return Text(e);
-              }).toList(),
-            )
+            
+
+
+
 
 
            

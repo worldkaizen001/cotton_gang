@@ -35,6 +35,8 @@ class SavedScreen extends ConsumerWidget {
                 },
               ),
             ),
+            ElevatedButton(onPressed: (){}, child: Text('Value Increment')),
+            Text(saveItemState.length.toString()),
             const Titles(
               title: 'Saved',
             ),
