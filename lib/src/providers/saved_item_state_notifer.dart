@@ -1,42 +1,39 @@
-
-
-
+import 'package:cotton_gang/src/models/real_product.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../models/product.dart';
 
-final saveItemProvider = StateNotifierProvider<SaveItemNotifier, List<Product>>((ref) {
-  return  SaveItemNotifier();});
+final saveItemProvider =
+    StateNotifierProvider<SaveItemNotifier, List<RealProducts>>((ref) {
+  return SaveItemNotifier();
+});
 
-class SaveItemNotifier extends StateNotifier< List<Product>>{
-  SaveItemNotifier(): super([]);
+class SaveItemNotifier extends StateNotifier<List<RealProducts>> {
+  SaveItemNotifier() : super([]);
 
-  void addItem (Product product){
+  void addItem(RealProducts product) {
     state = [...state, product];
   }
 
-  void removeItem (Product product){
-    state = state.where((p) => p != product ).toList();
+  void removeItem(RealProducts product) {
+    state = state.where((p) => p != product).toList();
   }
 
-  updateMethod(dynamic number,Product product){
-    final updatedList = <Product>[];
-    for(var i=0; i < state.length; i++){
-      if(state[i] == number){
+  updateMethod(dynamic number, RealProducts product) {
+    final updatedList = <RealProducts>[];
+    for (var i = 0; i < state.length; i++) {
+      if (state[i] == number) {
         updatedList.add(product);
-      }
-      else {
+      } else {
         [
-        updatedList.add(state[i]),
-      ];
+          updatedList.add(state[i]),
+        ];
       }
       state = updatedList;
     }
   }
 
-  void clearItem (){
-     state = [];
+  void clearItem() {
+    state = [];
   }
-
-
 }

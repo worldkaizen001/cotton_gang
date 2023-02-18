@@ -1,19 +1,17 @@
-part of 'package:cotton_gang/src/pages/saved_screen/saved_screen_page.dart';
+part of 'package:cotton_gang/src/pages/homepage/homepage_page.dart';
 
-class SavedItemsCard extends ConsumerWidget {
-  final Function iconTapped, menuIconTapped;
-  final bool isLiked;
-  final String productImage, vendorName, productName, productDescription;
-  final double price;
-  const SavedItemsCard(
-      {required this.productDescription,
-      required this.menuIconTapped,
-      required this.isLiked,
-      required this.productName,
-      required this.iconTapped,
-      required this.productImage,
-      required this.price,
-      required this.vendorName,
+class RealProductCard extends ConsumerWidget {
+  final RealProducts realProducts;
+  final Function? iconTapped, menuIconTapped;
+  final bool? isLiked;
+  
+
+  const RealProductCard(
+      {
+      required this.realProducts,
+      this.iconTapped,
+      this.isLiked,
+      this.menuIconTapped,
       Key? key})
       : super(key: key);
 
@@ -32,7 +30,8 @@ class SavedItemsCard extends ConsumerWidget {
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(25),
                     image: DecorationImage(
-                        image: NetworkImage(productImage), fit: BoxFit.cover)),
+                        image: NetworkImage(realProducts.image),
+                        fit: BoxFit.cover)),
               ),
               // Positioned(
               //   right: 20,
@@ -54,7 +53,7 @@ class SavedItemsCard extends ConsumerWidget {
               //             color: Colors.black.withOpacity(0.45),
               //             child:  InkWell(
               //               onTap: (){
-              //                 menuIconTapped();
+              //                menuIconTapped();
               //               },
               //               child: const Center(
               //                 child: Icon(Icons.add,size: 23,color: Colors.white,),
@@ -98,7 +97,7 @@ class SavedItemsCard extends ConsumerWidget {
                                   fontSize: 16,
                                   color: const Color(0xfff5f5f5),
                                 ),
-                                text: price.toString()),
+                                text: realProducts.price.toString()),
                           ])),
                         ),
                       ),
@@ -106,66 +105,25 @@ class SavedItemsCard extends ConsumerWidget {
                   ),
                 ),
               ),
-              // Positioned(
-              //     right: 13,
-              //     bottom: 16,
-              //     child: IconButton(
-              //       onPressed: () {
-              //         iconTapped();
-              //       },
-              //       icon: const Icon(Iconsax.trash),
-              //       color: const Color(0xff39FF14),
-              //     )),
-              // Positioned(
-              //   left: 20,
-              //   top: 20,
-              //   child: Center(
-              //     child: ClipRRect(
-              //       borderRadius: BorderRadius.circular(15),
-              //       child: BackdropFilter(
-              //         filter: ImageFilter.blur(
-              //           sigmaX: 40.0,
-              //           sigmaY: 40.0,
-              //         ),
-              //         child: Container(
-              //           color: Colors.black.withOpacity(0.45),
-              //           height: 38,
-              //           width: 100,
-              //           child: Center(
-              //             child: Expanded(
-              //               child: Row(
-              //                 children: [
-              //                   const CircleAvatar(
-              //                     radius: 15,
-              //                     backgroundImage:
-              //                         AssetImage(CGangImages.female),
-              //                   ),
-              //                   CustomSizedBox.horizontalSpace(2),
-              //                   Text(
-              //                     vendorName,
-              //                     style: GoogleFonts.prompt(
-              //                       fontSize: 11,
-              //                       fontWeight: FontWeight.w500,
-              //                       color: const Color(0xfff9f9f9),
-              //                     ),
-              //                   ),
-              //                 ],
-              //               ),
-              //             ),
-              //           ),
-              //         ),
-              //       ),
-              //     ),
-              //   ),
-              // ),
+              Positioned(
+                  right: 13,
+                  bottom: 16,
+                  child: IconButton(
+                    onPressed: () {
+                      iconTapped!();
+                    },
+                    icon: isLiked!
+                        ? const Icon(Iconsax.heart5)
+                        : const Icon(Iconsax.heart),
+                    color: const Color(0xff39FF14),
+                  )),
+
             ],
           ),
-        ).animate().slideX(
-            duration: Duration(milliseconds: 200),
-            delay: Duration(milliseconds: 100)),
+        ),
         TitleAndDescription(
-          productTitle: productName,
-          productDescription: productDescription,
+          productTitle: realProducts.title,
+          productDescription: realProducts.description,
         )
       ],
     );

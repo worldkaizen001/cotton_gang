@@ -4,7 +4,7 @@ part of 'package:cotton_gang/src/pages/product_details/product_details_page.dart
 class PageViewAndController extends StatefulWidget {
   final PageController controller;
   final double price;
-  final List<String> newImages;
+  final String newImages;
   const PageViewAndController({required this.newImages,required this.price,required this.controller,Key? key}) : super(key: key);
 
   @override

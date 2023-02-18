@@ -30,55 +30,69 @@ class SavedScreen extends ConsumerWidget {
             Center(
               child: ValueListenableBuilder(
                 valueListenable: value,
-                builder: (context, valuer, _ ){
+                builder: (context, valuer, _) {
                   return Text(valuer.toString());
                 },
               ),
             ),
-            ElevatedButton(onPressed: (){}, child: Text('Value Increment')),
+            ElevatedButton(onPressed: () {}, child: Text('Value Increment')),
             Text(saveItemState.length.toString()),
             const Titles(
               title: 'Saved',
             ),
 
-           if(saveItemState.isEmpty) const GenericEmptyState(
-             emptyStateImage: CGangImages.savedEmptyState,
-             firstText: 'oops',
-             secondText: 'Your saved list is empty!',)
-           else Column(
-
-             key: const PageStorageKey<String>('stati'),
-
-             children: saveItemState.map((item){
-
-               return SavedItemsCard(productDescription: item.productDescription , menuIconTapped:(){}, isLiked: item.isLiked, productName: item.productName, iconTapped: (){
-                 return showDialog(context: context, builder: (BuildContext context){
-                   return  AlertDialog(
-                     elevation: 10,
-                     backgroundColor: Colors.grey[200],
-
-                     title: const Text('Delete Confirmation'),
-                     content: const Text('Are you sure you want to delete this item?'),
-                     shape: RoundedRectangleBorder(
-                       borderRadius: BorderRadius.circular(10),),
-                     actions: [
-                       TextButton(onPressed: (){
-                         ref.read(saveItemProvider.notifier).removeItem(item);
-                         // savedItem.removeSavedItems(item);
-                         Navigator.pop(context);
-
-
-                       }, child: const Text('Delete')),
-                       TextButton(onPressed: (){
-                         Navigator.pop(context);
-                       }, child: const Text('Cancel'))
-                     ],
-                   );
-                 });
-
-               }, productImage: item.productImages[0], price: item.price, vendorName: item.vendorName);
-             }).toList(),
-           ),
+            if (saveItemState.isEmpty)
+              const GenericEmptyState(
+                emptyStateImage: CGangImages.savedEmptyState,
+                firstText: 'oops',
+                secondText: 'Your saved list is empty!',
+              )
+            else
+              Column(
+                key: const PageStorageKey<String>('stati'),
+                children: saveItemState.map((item) {
+                  return SavedItemsCard(
+                      productDescription: item.description,
+                      menuIconTapped: () {},
+                      isLiked: false,
+                      productName: item.title,
+                      iconTapped: () {
+                        return showDialog(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return AlertDialog(
+                                elevation: 10,
+                                backgroundColor: Colors.grey[200],
+                                title: const Text('Delete Confirmation'),
+                                content: const Text(
+                                    'Are you sure you want to delete this item?'),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                                actions: [
+                                  TextButton(
+                                      onPressed: () {
+                                        ref
+                                            .read(saveItemProvider.notifier)
+                                            .removeItem(item);
+                                        // savedItem.removeSavedItems(item);
+                                        Navigator.pop(context);
+                                      },
+                                      child: const Text('Delete')),
+                                  TextButton(
+                                      onPressed: () {
+                                        Navigator.pop(context);
+                                      },
+                                      child: const Text('Cancel'))
+                                ],
+                              );
+                            });
+                      },
+                      productImage: item.image,
+                      price: item.price,
+                      vendorName: item.title);
+                }).toList(),
+              ),
 
             // if (savedItem.savedItemsList.isEmpty) const GenericEmptyState(
             //         emptyStateImage: CGangImages.savedEmptyState,
@@ -148,7 +162,6 @@ class SavedScreen extends ConsumerWidget {
             //         ),
             //       ]),
 
-
             // if (savedItem.savedItemsList.isEmpty) const GenericEmptyState(
             //   emptyStateImage: CGangImages.savedEmptyState,
             //   firstText: 'oops',
@@ -187,9 +200,6 @@ class SavedScreen extends ConsumerWidget {
             //       }, productImage: item.productImages[0], price: item.price, vendorName: item.vendorName);
             //     }).toList(),
             //   )
-
-
-
           ],
         ),
       ),

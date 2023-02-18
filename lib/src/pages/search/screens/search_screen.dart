@@ -8,6 +8,7 @@ class SearchScreen extends StatefulWidget {
 }
 
 class _SearchScreenState extends State<SearchScreen> {
+
   final searchController = TextEditingController();
   dynamic boy;
 
@@ -30,10 +31,27 @@ class _SearchScreenState extends State<SearchScreen> {
 
 
 
+  final  kleekit = [
+
+
+    {
+      'name': 'kayone', 'salary': 8000, 'position': 'boss', 'hobbies': ['dance', 'sing']
+    },
+
+    {
+      'name': 'kelvin', 'salary': 3000, 'position': 'flutter', 'hobbies': ['cook', 'play']
+    },
+    {
+      'name': 'tega', 'salary': 5000, 'position': 'flutter', 'hobbies': ['talk', 'sing']
+    }
+  ];
+
 
 
   @override
   Widget build(BuildContext context) {
+    var kleekitMap = kleekit.map((sum) => sum['name']).toList();
+    print(kleekitMap);
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: customAppBar(),
@@ -44,6 +62,13 @@ class _SearchScreenState extends State<SearchScreen> {
           children: [
             const Titles(
               title: 'Search',
+            ),
+             GestureDetector(
+              onTap: (){
+                kleekitMap;
+                print(kleekitMap);
+              },
+              child: Center(child: Text('Click')),
             ),
             Row(
               children: [
