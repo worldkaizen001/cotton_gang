@@ -8,50 +8,19 @@ class SearchScreen extends StatefulWidget {
 }
 
 class _SearchScreenState extends State<SearchScreen> {
-
   final searchController = TextEditingController();
   dynamic boy;
 
-  List<dynamic> searchList = [
-  ];
+  List<dynamic> searchList = [];
 
-
-   findOne (String name){
-
-      products.where((sum) => sum.productName == name).map((e) {
+  findOne(String name) {
+    products.where((sum) => sum.productName == name).map((e) {
       return e;
-
     }).toList();
-
-
-
-
   }
-
-
-
-
-  final  kleekit = [
-
-
-    {
-      'name': 'kayone', 'salary': 8000, 'position': 'boss', 'hobbies': ['dance', 'sing']
-    },
-
-    {
-      'name': 'kelvin', 'salary': 3000, 'position': 'flutter', 'hobbies': ['cook', 'play']
-    },
-    {
-      'name': 'tega', 'salary': 5000, 'position': 'flutter', 'hobbies': ['talk', 'sing']
-    }
-  ];
-
-
 
   @override
   Widget build(BuildContext context) {
-    var kleekitMap = kleekit.map((sum) => sum['name']).toList();
-    print(kleekitMap);
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: customAppBar(),
@@ -63,35 +32,30 @@ class _SearchScreenState extends State<SearchScreen> {
             const Titles(
               title: 'Search',
             ),
-             GestureDetector(
-              onTap: (){
-                kleekitMap;
-                print(kleekitMap);
-              },
-              child: Center(child: Text('Click')),
-            ),
             Row(
               children: [
                 Padding(
-                  padding: const  EdgeInsets.only(left: 20, right: 0, top: 20),
+                  padding: const EdgeInsets.only(left: 20, right: 0, top: 20),
                   child: CGangTextField(
-                    prefixWidget: Icon(searchController.text.isEmpty? Iconsax.search_normal: null, color: const Color(0xff181818)),
+                    prefixWidget: Icon(
+                        searchController.text.isEmpty
+                            ? Iconsax.search_normal
+                            : null,
+                        color: const Color(0xff181818)),
                     controller: searchController,
-
                     validator: (val) {
                       return null;
                     },
                     onChanged: (val) {
-                      setState(() {
-
-                      });
+                      setState(() {});
                       return null;
                     },
                     width: 0.8,
-
                     obscure: false,
-                    cursorColor: const  Color(0xff181818),
-                      prefixIcon: searchController.text.isEmpty? Iconsax.search_normal: null,
+                    cursorColor: const Color(0xff181818),
+                    prefixIcon: searchController.text.isEmpty
+                        ? Iconsax.search_normal
+                        : null,
                     prefixIconColor: const Color(0xff181818),
                     hintText: 'Search product or seller',
                     hintTextStyle: GoogleFonts.prompt(
@@ -101,31 +65,24 @@ class _SearchScreenState extends State<SearchScreen> {
                     ),
                   ),
                 ),
-                IconButton(onPressed: (){
-                  findOne(searchController.text);
-                  print(searchController.text);
-
-
-                }, icon: Icon(Icons.send))
+                IconButton(
+                    onPressed: () {
+                      findOne(searchController.text);
+                      print(searchController.text);
+                    },
+                    icon: Icon(Icons.send))
               ],
             ),
-           searchList.isEmpty? const GenericEmptyState(emptyStateImage:CGangImages.searchEmptyState, firstText: 'oops', secondText: 'Your saved list is empty!',):
-           Column(
-             children: searchList.map((e) {
-               return Text(e);
-             }).toList()
-           ),
-
-            
-
-
-
-
-
-           
-
-
-
+            searchList.isEmpty
+                ? const GenericEmptyState(
+                    emptyStateImage: CGangImages.searchEmptyState,
+                    firstText: 'oops',
+                    secondText: 'Your saved list is empty!',
+                  )
+                : Column(
+                    children: searchList.map((e) {
+                    return Text(e);
+                  }).toList()),
           ],
         ),
       ),

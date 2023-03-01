@@ -106,16 +106,16 @@ class SavedItemsCard extends ConsumerWidget {
                   ),
                 ),
               ),
-              // Positioned(
-              //     right: 13,
-              //     bottom: 16,
-              //     child: IconButton(
-              //       onPressed: () {
-              //         iconTapped();
-              //       },
-              //       icon: const Icon(Iconsax.trash),
-              //       color: const Color(0xff39FF14),
-              //     )),
+              Positioned(
+                  right: 13,
+                  bottom: 16,
+                  child: IconButton(
+                    onPressed: () {
+                      iconTapped();
+                    },
+                    icon: const Icon(Iconsax.trash),
+                    color: const Color(0xff39FF14),
+                  )),
               // Positioned(
               //   left: 20,
               //   top: 20,

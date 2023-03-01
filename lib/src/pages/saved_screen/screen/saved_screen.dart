@@ -27,15 +27,15 @@ class SavedScreen extends ConsumerWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Center(
-              child: ValueListenableBuilder(
-                valueListenable: value,
-                builder: (context, valuer, _) {
-                  return Text(valuer.toString());
-                },
-              ),
-            ),
-            ElevatedButton(onPressed: () {}, child: Text('Value Increment')),
+            // Center(
+            //   child: ValueListenableBuilder(
+            //     valueListenable: value,
+            //     builder: (context, valuer, _) {
+            //       return Text(valuer.toString());
+            //     },
+            //   ),
+            // ),
+            // ElevatedButton(onPressed: () {}, child: Text('Value Increment')),
             Text(saveItemState.length.toString()),
             const Titles(
               title: 'Saved',

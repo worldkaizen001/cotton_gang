@@ -34,10 +34,12 @@ class HomepageScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    bool changeAm;
     var change = ref.watch(changeState);
     var savedItem = ref.watch(savedItemsProvider);
     var stateItem = ref.watch(saveItemProvider);
     var listOfProducts = ref.watch(productsProvider);
+    var changeColor = ref.watch(changeIcon);
     return Scaffold(
       appBar: customAppBar(),
       endDrawer: const CustomEndDrawer(),
@@ -104,12 +106,12 @@ class HomepageScreen extends ConsumerWidget {
                               // setState(() {
                               //   obj.isLiked = !obj.isLiked;
                               //   toggle = !toggle;
-                              //
+
                               //   toggle ? favorites.add(obj) : favorites.remove(obj);
                               // });
                             },
                             menuIconTapped: () {},
-                            isLiked: false,
+                            isLiked: changeColor,
                           ),
                         );
                       }),

@@ -1,14 +1,14 @@
 part of 'package:cotton_gang/src/pages/homepage/homepage_page.dart';
 
+final changeIcon = StateProvider<bool>((ref) => true);
+
 class RealProductCard extends ConsumerWidget {
   final RealProducts realProducts;
   final Function? iconTapped, menuIconTapped;
   final bool? isLiked;
-  
 
   const RealProductCard(
-      {
-      required this.realProducts,
+      {required this.realProducts,
       this.iconTapped,
       this.isLiked,
       this.menuIconTapped,
@@ -17,6 +17,8 @@ class RealProductCard extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    var change = ref.watch(changeIcon);
+    bool prada = false;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -111,13 +113,17 @@ class RealProductCard extends ConsumerWidget {
                   child: IconButton(
                     onPressed: () {
                       iconTapped!();
+                      bool check =
+                          ref.read(changeIcon.notifier).update((state) {
+                        return state != state;
+                      });
+                      var dance = check;
                     },
-                    icon: isLiked!
+                    icon: change
                         ? const Icon(Iconsax.heart5)
                         : const Icon(Iconsax.heart),
                     color: const Color(0xff39FF14),
                   )),
-
             ],
           ),
         ),
