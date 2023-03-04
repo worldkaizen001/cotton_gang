@@ -19,6 +19,19 @@ class _SearchScreenState extends State<SearchScreen> {
     }).toList();
   }
 
+  late final LocalNotificationService service;
+
+  void listenToNotification() =>
+      service.onNotificationClick.stream.listen(onNotificationListener);
+
+  @override
+  void initState() {
+    service = LocalNotificationService();
+    service.initialize();
+    listenToNotification();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,6 +45,27 @@ class _SearchScreenState extends State<SearchScreen> {
             const Titles(
               title: 'Search',
             ),
+            ElevatedButton(
+                onPressed: () async {
+                  await service.showNotification(
+                      id: 0, title: "test", body: 'this is a test');
+                },
+                child: Text('Local Noti')),
+            ElevatedButton(
+                onPressed: () async {
+                  await service.showScheduledNotification(
+                      seconds: 4, id: 0, title: "test", body: 'this is a test');
+                },
+                child: Text('Scheduled Noti')),
+            ElevatedButton(
+                onPressed: () async {
+                  await service.showNotificationWithPayload(
+                      payload: 'payload Navigated',
+                      id: 0,
+                      title: "test",
+                      body: 'this is a test');
+                },
+                child: Text('Show noti with paload  ')),
             Row(
               children: [
                 Padding(
@@ -87,5 +121,15 @@ class _SearchScreenState extends State<SearchScreen> {
         ),
       ),
     );
+  }
+
+  void onNotificationListener(String? payload) {
+    if (payload != null && payload.isNotEmpty) {
+      print('payload $payload');
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: ((context) => PayloadScreen(payload: payload))));
+    }
   }
 }

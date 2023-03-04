@@ -12,11 +12,62 @@ class _LoginScreenState extends State<LoginScreen> {
   final passwordController = TextEditingController();
   final emailController = TextEditingController();
   final phoneController = TextEditingController();
+  String? mtoken;
+
+  void getToken() async {
+    await FirebaseMessaging.instance.getToken().then((token) {
+      setState(() {
+        mtoken = token!;
+        print("my token is $mtoken");
+      });
+    });
+  }
+
+  void onBackground() {
+    FirebaseMessaging.onMessage.listen((RemoteMessage message) {
+      debugPrint('onMessage');
+      final snackBar =
+          SnackBar(content: Text(message.notification?.title ?? ""));
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+    });
+  }
+
+  void grantPermission() async {
+    FirebaseMessaging messaging = FirebaseMessaging.instance;
+
+    NotificationSettings settings = await messaging.requestPermission(
+      alert: true,
+      announcement: false,
+      badge: true,
+      carPlay: false,
+      criticalAlert: false,
+      provisional: false,
+      sound: true,
+    );
+
+    if (settings.authorizationStatus == AuthorizationStatus.authorized) {
+      print('User granted permission');
+    } else if (settings.authorizationStatus ==
+        AuthorizationStatus.provisional) {
+      print('User granted provisional permission');
+    } else {
+      print('User declined or has not accepted permission');
+    }
+  }
 
   FirebaseAuth auth = FirebaseAuth.instance;
 
   bool obscure = false;
   bool isLoading = false;
+
+  @override
+  void initState() {
+    grantPermission();
+    getToken();
+    onBackground();
+
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +84,9 @@ class _LoginScreenState extends State<LoginScreen> {
               ArrowBackAndTitle(
                 width: 40,
                 height: 40,
-                arrowBackCallback: () {},
+                arrowBackCallback: () {
+                  getToken();
+                },
                 title: 'Sign-In',
               ),
               TextFieldAndTitle(
@@ -105,9 +158,7 @@ class _LoginScreenState extends State<LoginScreen> {
               Align(
                 alignment: Alignment.bottomRight,
                 child: InkWell(
-                  onTap: () {
-
-                  },
+                  onTap: () {},
                   child: Text(
                     'Did you forget the password?',
                     style: GoogleFonts.prompt(
@@ -130,26 +181,24 @@ class _LoginScreenState extends State<LoginScreen> {
                   //     return HomepageScreen();
                   //   }));
                   // });
-
                 },
-                firstButtonCallback:  () {
-                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context){
+                firstButtonCallback: () {
+                  Navigator.pushReplacement(context,
+                      MaterialPageRoute(builder: (context) {
                     return BottomNavigation();
                   }));
                   print('yammy');
-                        // if (formGlobalKey.currentState!.validate()) {
-                        //   AuthService().signInWithEmailAndPassword(emailController.text.trim(),passwordController.text.trim(), context);
-                        // }
-                      },
+                  // if (formGlobalKey.currentState!.validate()) {
+                  //   AuthService().signInWithEmailAndPassword(emailController.text.trim(),passwordController.text.trim(), context);
+                  // }
+                },
                 googleButtonCallback: () {
-
-                      // AuthService().signInWithGoogle().then((value) {
-                      //   Navigator.push(context, MaterialPageRoute(builder: (context){
-                      //     return HomepageScreen();
-                      //   }));
-                      //
-                      // });
-
+                  // AuthService().signInWithGoogle().then((value) {
+                  //   Navigator.push(context, MaterialPageRoute(builder: (context){
+                  //     return HomepageScreen();
+                  //   }));
+                  //
+                  // });
                 },
                 firstButtonTitle: 'Continue',
                 firstButtonColor: passwordController.text.isEmpty ||
@@ -157,8 +206,8 @@ class _LoginScreenState extends State<LoginScreen> {
                         emailController.text.isEmpty
                     ? const Color(0xff181818).withOpacity(0.49)
                     : const Color(0xff181818),
-                firstButtonBorderColor: const Color(0xff181818).withOpacity(0.21),
-
+                firstButtonBorderColor:
+                    const Color(0xff181818).withOpacity(0.21),
               ),
             ]),
           ),
@@ -167,4 +216,3 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 }
-
