@@ -15,7 +15,7 @@ class LocalNotificationService {
 
     /// the andriodinitialesetting should have an icon
     const AndroidInitializationSettings androidInitializationSettings =
-        AndroidInitializationSettings('');
+        AndroidInitializationSettings('@mipmap/ic_launcher');
 
     IOSInitializationSettings iosInitializationSettings =
         IOSInitializationSettings(
