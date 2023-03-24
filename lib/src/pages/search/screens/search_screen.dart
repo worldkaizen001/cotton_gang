@@ -13,16 +13,24 @@ class _SearchScreenState extends State<SearchScreen> {
 
   List<dynamic> searchList = [];
 
-  dynamic  searchItem (String text){
-   var sum = products.where((sum)=> sum.productName == text);
-   setState(() {
-     searchList.add(sum);
-
-   });
-
-
+  findOne(String name) {
+    products.where((sum) => sum.productName == name).map((e) {
+      return e;
+    }).toList();
   }
 
+  late final LocalNotificationService service;
+
+  void listenToNotification() =>
+      service.onNotificationClick.stream.listen(onNotificationListener);
+
+  @override
+  void initState() {
+    service = LocalNotificationService();
+    service.initialize();
+    listenToNotification();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -37,28 +45,51 @@ class _SearchScreenState extends State<SearchScreen> {
             const Titles(
               title: 'Search',
             ),
+            ElevatedButton(
+                onPressed: () async {
+                  await service.showNotification(
+                      id: 0, title: "test", body: 'this is a test');
+                },
+                child: Text('Local Noti')),
+            ElevatedButton(
+                onPressed: () async {
+                  await service.showScheduledNotification(
+                      seconds: 4, id: 0, title: "test", body: 'this is a test');
+                },
+                child: Text('Scheduled Noti')),
+            ElevatedButton(
+                onPressed: () async {
+                  await service.showNotificationWithPayload(
+                      payload: 'payload Navigated',
+                      id: 0,
+                      title: "test",
+                      body: 'this is a test');
+                },
+                child: Text('Show noti with paload  ')),
             Row(
               children: [
                 Padding(
-                  padding: const  EdgeInsets.only(left: 20, right: 0, top: 20),
+                  padding: const EdgeInsets.only(left: 20, right: 0, top: 20),
                   child: CGangTextField(
-                    prefixWidget: Icon(searchController.text.isEmpty? Iconsax.search_normal: null, color: const Color(0xff181818)),
+                    prefixWidget: Icon(
+                        searchController.text.isEmpty
+                            ? Iconsax.search_normal
+                            : null,
+                        color: const Color(0xff181818)),
                     controller: searchController,
-
                     validator: (val) {
                       return null;
                     },
                     onChanged: (val) {
-                      setState(() {
-
-                      });
+                      setState(() {});
                       return null;
                     },
                     width: 0.8,
-
                     obscure: false,
-                    cursorColor: const  Color(0xff181818),
-                      prefixIcon: searchController.text.isEmpty? Iconsax.search_normal: null,
+                    cursorColor: const Color(0xff181818),
+                    prefixIcon: searchController.text.isEmpty
+                        ? Iconsax.search_normal
+                        : null,
                     prefixIconColor: const Color(0xff181818),
                     hintText: 'Search product or seller',
                     hintTextStyle: GoogleFonts.prompt(
@@ -68,37 +99,37 @@ class _SearchScreenState extends State<SearchScreen> {
                     ),
                   ),
                 ),
-                IconButton(onPressed: (){searchItem(searchController.text);
-                  setState(() {
-                dynamic    boy = searchItem(searchController.text);
-                  });
-                  print(searchController.text);
-                  }, icon: Icon(Icons.send))
+                IconButton(
+                    onPressed: () {
+                      findOne(searchController.text);
+                      print(searchController.text);
+                    },
+                    icon: Icon(Icons.send))
               ],
             ),
-            const GenericEmptyState(emptyStateImage:CGangImages.searchEmptyState, firstText: 'oops', secondText: 'Your saved list is empty!',),
-
-            Column(
-              children: products.where((sum)=> sum.productName == searchController.text).map((e) {
-                return Card(
-                  child: Text(e.productName),
-                );
-      }).toList(),
-            ),
-            Column(
-              children: searchList.map((e){
-                return Text(e);
-              }).toList(),
-            )
-
-
-           
-
-
-
+            searchList.isEmpty
+                ? const GenericEmptyState(
+                    emptyStateImage: CGangImages.searchEmptyState,
+                    firstText: 'oops',
+                    secondText: 'Your saved list is empty!',
+                  )
+                : Column(
+                    children: searchList.map((e) {
+                    return Text(e);
+                  }).toList()),
           ],
         ),
       ),
     );
+  }
+
+  void onNotificationListener(String? payload) {
+    if (payload != null && payload.isNotEmpty) {
+      print('payload $payload');
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: ((context) => PayloadScreen(payload: payload))));
+    }
   }
 }

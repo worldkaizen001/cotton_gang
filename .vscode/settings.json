@@ -1,0 +1,6 @@
+{
+    "diffEditor.diffAlgorithm": "smart",
+    "workbench.activityBar.iconClickBehavior": "toggle",
+    "workbench.preferredDarkColorTheme": "Default Dark+",
+    "workbench.preferredHighContrastLightColorTheme": "Visual Studio Light"
+}

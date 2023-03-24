@@ -1,9 +1,13 @@
 part of 'package:cotton_gang/src/pages/product_details/product_details_page.dart';
 
-
-class Description  extends StatelessWidget {
-  final String ownerName,productName,productDescription;
-  const Description ({required this. ownerName,required this.productName,required this.productDescription,Key? key}) : super(key: key);
+class Description extends StatelessWidget {
+  final String ownerName, productName, productDescription;
+  const Description(
+      {required this.ownerName,
+      required this.productName,
+      required this.productDescription,
+      Key? key})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -11,7 +15,7 @@ class Description  extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
-          padding: const EdgeInsets.only(top: 16,bottom: 13),
+          padding: const EdgeInsets.only(top: 16, bottom: 13),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -54,44 +58,57 @@ class Description  extends StatelessWidget {
                 height: 42,
                 width: 90,
                 child: Card(
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(30)),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      Text('100 likes',style: GoogleFonts.prompt(
-                        fontSize: 12,
-                        fontWeight: FontWeight.w400,
-                        color: const Color(0xffF9F9F9),
-                      ),),
+                      Text(
+                        '100 likes',
+                        style: GoogleFonts.prompt(
+                          fontSize: 12,
+                          fontWeight: FontWeight.w400,
+                          color: const Color(0xffF9F9F9),
+                        ),
+                      ),
                       Icon(
                         Iconsax.heart,
                         size: 20,
                         color: Color(0xff39FF14),
                       )
                     ],
-                  ) ,
+                  ),
                   color: Color(0xff181818),
                 ),
               ),
             ],
           ),
         ),
-        Text(productName,style:  GoogleFonts.prompt(
-          fontSize: 16,
-          fontWeight: FontWeight.w600,
-          color: const Color(0xff181818),
-        ),),
-        Text(productDescription,style:  GoogleFonts.prompt(
-          fontSize: 13,
-          fontWeight: FontWeight.w300,
-          color: const Color(0xff555555),
-        ),),
+        Text(
+          productName,
+          style: GoogleFonts.prompt(
+            fontSize: 16,
+            fontWeight: FontWeight.w600,
+            color: const Color(0xff181818),
+          ),
+        ),
+        Text(
+          productDescription,
+          style: GoogleFonts.prompt(
+            fontSize: 13,
+            fontWeight: FontWeight.w300,
+            color: const Color(0xff555555),
+          ),
+        ),
         CustomSizedBox.verticalSpace(10),
-
-        CGangButton(title: 'Contact Seller', buttonHeight: 0.07, buttonWidth:1, buttonColor: const Color(0xff181818), callBack: (){},borderRadius: 4,),
-
-
-
+        CGangButton(
+          title: 'Contact Seller',
+          buttonHeight: 0.07,
+          buttonWidth: 1,
+          buttonColor: const Color(0xff181818),
+          callBack: () {},
+          borderRadius: 4,
+        ),
       ],
     );
   }

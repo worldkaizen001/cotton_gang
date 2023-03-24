@@ -15,8 +15,30 @@ class PostItemScreenState extends ConsumerState<PostItemScreen> {
   final productBrandController = TextEditingController();
   final productConditionController = TextEditingController();
 
+  Future<List<RealProducts>> getRealProducts() async {
+    String endPoint = 'https://fakestoreapi.com/products';
+    var uri = Uri.parse(endPoint);
+
+    var response = await http.get(uri);
+    if (response.statusCode == 200) {
+      print(response.body);
+      var data = jsonDecode(response.body);
+
+      return data == null ? [] : List.from(data.map(RealProducts.fromJson));
+    } else {
+      throw Exception();
+    }
+  }
+
   @override
-  void dispose (){
+  void initState() {
+    // TODO: implement initState
+    fetchProducts = getRealProducts();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
     productConditionController.dispose();
     productBrandController.dispose();
     productPriceController.dispose();
@@ -25,7 +47,7 @@ class PostItemScreenState extends ConsumerState<PostItemScreen> {
     super.dispose();
   }
 
-
+  late final Future<List<RealProducts>> fetchProducts;
 
   @override
   Widget build(
@@ -41,10 +63,13 @@ class PostItemScreenState extends ConsumerState<PostItemScreen> {
             autovalidateMode: AutovalidateMode.onUserInteraction,
             key: formGlobalKey,
             child: Padding(
-              padding:  EdgeInsets.only(left: 20, right: 20, top: 20, bottom: MediaQuery.of(context).viewInsets.bottom),
+              padding: EdgeInsets.only(
+                  left: 20,
+                  right: 20,
+                  top: 20,
+                  bottom: MediaQuery.of(context).viewInsets.bottom),
               child: Column(
                 children: [
-
                   CustomSizedBox.verticalSpace(20),
                   GestureDetector(
                     onTap: () {
@@ -73,7 +98,9 @@ class PostItemScreenState extends ConsumerState<PostItemScreen> {
                       setState(() {});
                       return null;
                     },
-                  ),
+                  ).animate().slideX(
+                      duration: Duration(milliseconds: 200),
+                      delay: Duration(milliseconds: 50)),
                   CustomSizedBox.verticalSpace(30),
                   TextFieldAndTitle(
                     controller: productDetailsController,
@@ -87,9 +114,7 @@ class PostItemScreenState extends ConsumerState<PostItemScreen> {
                     },
                     obscure: false,
                     onChanged: (val) {
-                      setState(() {
-
-                      });
+                      setState(() {});
                       return null;
                     },
                   ),
@@ -106,9 +131,7 @@ class PostItemScreenState extends ConsumerState<PostItemScreen> {
                     },
                     obscure: false,
                     onChanged: (val) {
-                      setState(() {
-
-                      });
+                      setState(() {});
                       return null;
                     },
                   ),
@@ -125,9 +148,7 @@ class PostItemScreenState extends ConsumerState<PostItemScreen> {
                     },
                     obscure: false,
                     onChanged: (val) {
-                      setState(() {
-
-                      });
+                      setState(() {});
                       return null;
                     },
                   ),
@@ -144,9 +165,7 @@ class PostItemScreenState extends ConsumerState<PostItemScreen> {
                     },
                     obscure: false,
                     onChanged: (val) {
-                      setState(() {
-
-                      });
+                      setState(() {});
                       return null;
                     },
                   ),

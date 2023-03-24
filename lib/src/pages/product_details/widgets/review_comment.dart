@@ -44,7 +44,7 @@ class _ReviewCommentsState extends State<ReviewComments> {
         CGangButton(title: 'Submit', buttonHeight: 0.04, buttonWidth:0.25, buttonColor: const Color(0xff181818), callBack: (){},borderRadius: 4,),
         CustomSizedBox.verticalSpace(20),
         Column(
-          children: reviews.map((obj){
+          children: realReviews.map((obj){
             var cmt = obj["comments"];
             var name = obj["name"];
             var img = obj["image"];
