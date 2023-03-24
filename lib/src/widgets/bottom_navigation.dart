@@ -26,7 +26,7 @@ class BottomNavigation extends HookWidget {
       const SavedScreen(),
       const LoginScreen(),
       // CreateNewPassword(),
-      // PostItemScreen()
+      // const PostItemScreen()
 
       // const ProfileScreen(),
     ];

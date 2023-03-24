@@ -14,6 +14,7 @@ class LocalNotificationService {
     tz.initializeTimeZones();
 
     /// the andriodinitialesetting should have an icon
+    /// //////////
     const AndroidInitializationSettings androidInitializationSettings =
         AndroidInitializationSettings('@mipmap/ic_launcher');
 
